@@ -1,0 +1,9 @@
+{
+  "name": "react-gift-monorepo",
+  "scripts": {
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run start\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
