@@ -28,3 +28,12 @@ export const YellowBox = styled.div`
     color: ${({ theme }) => theme.colors.gray1000};
     line-height: 1.5;
 `;
+
+export const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 40px 0;
+`
