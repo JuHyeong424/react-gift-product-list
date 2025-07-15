@@ -16,7 +16,6 @@ export default function useFetchThemes() {
     const fetchThemes = async() => {
       try {
         const res = await axios.get('http://localhost:3000/api/themes');
-        await new Promise(resolve => setTimeout(resolve, 1000));
         setThemes(res.data.data);
       } catch (e) {
         console.error('GiftTheme api 오류', e);
