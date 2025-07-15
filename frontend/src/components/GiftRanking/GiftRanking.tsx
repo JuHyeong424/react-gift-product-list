@@ -12,6 +12,8 @@ import RankingCard from '@/components/Common/RankingCard/RankingCard';
 import useSelectedState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
 import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
+import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
+import { Loading } from '@/components/GiftThema/GiftThema.styles.ts';
 
 interface Product {
   name: string;
@@ -30,12 +32,29 @@ export default function GiftRanking() {
   const [category, setCategory] = useSelectedState<string>("giftRankingCategory", "전체");
   const [sort, setSort] = useSelectedState<string>("giftRankingSort", "받고 싶어한");
 
+  const {
+    ranking,
+    loading,
+    error
+  } = useFetchRanking();
+
+  if (loading) {
+    return (
+      <Section>
+        <Title>실시간 급상승 선물랭킹</Title>
+        <Loading>로딩 중...</Loading>
+      </Section>
+    )
+  }
+
+  if (error || ranking.length === 0) {
+    return null;
+  }
+
   const handleToggle = () => {
     setShowCount(prev => (prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT));
   };
 
-  const expandedList: Product[] = Array(TOTAL_GIFT_COUNT).fill(productList[0]);
-  localStorage.setItem(EXPANDED_LIST_STORAGE_ID, JSON.stringify(expandedList));
 
   return (
     <Section>
@@ -65,7 +84,7 @@ export default function GiftRanking() {
       </SortOptions>
 
       <Grid>
-        {expandedList.slice(0, showCount).map((item, index) => (
+        {ranking.slice(0, showCount).map((item, index) => (
           <RankingCard
             key={item.name + index}
             rank={index + 1}
