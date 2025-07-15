@@ -1,29 +1,11 @@
 import { Title, Section, ThemeListContainer, YellowBox, Loading } from '@/components/GiftThema/GiftThema.styles';
 import ThemeList from '@/components/Common/ThemeList/ThemeList';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import useFetchThemes from '@/hooks/useFetchThemes.ts';
 
 export default function GiftThema() {
-  const [themes, setThemes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const fetchThemes = async() => {
-    try {
-      const res = await axios.get('http://localhost:3000/api/themes');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setThemes(res.data.data);
-    } catch (e) {
-      console.error('GiftTheme api 오류', e);
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchThemes();
-  }, []);
+  const {
+    themes, loading, error
+  } = useFetchThemes();
 
   if (loading) {
     return (
