@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { productList } from '@/data/productList';
 import {
   CategoryFilter,
   MoreButton, Grid, Section, Title,
@@ -11,20 +10,8 @@ import SortSpan from "@/components/Common/SortOption/SortOption"
 import RankingCard from '@/components/Common/RankingCard/RankingCard';
 import useSelectedState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
-import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
 import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
 import { Loading } from '@/components/GiftThema/GiftThema.styles.ts';
-
-interface Product {
-  name: string;
-  imageURL: string;
-  price: {
-    sellingPrice: string;
-  };
-  brandInfo: {
-    name: string;
-  }
-}
 
 export default function GiftRanking() {
   const navigate = useNavigate();
@@ -54,7 +41,6 @@ export default function GiftRanking() {
   const handleToggle = () => {
     setShowCount(prev => (prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT));
   };
-
 
   return (
     <Section>
@@ -95,8 +81,8 @@ export default function GiftRanking() {
             onClick={() =>
               navigate(
                 sessionStorage.getItem('splitedId')
-                ?`/order/${index + 1}`
-                : '/login', { state: { from: `/order/${index + 1}`}}
+                ?`/order/${item.id}`
+                : '/login', { state: { from: `/order/${item.id}`}}
               )}
           />
         ))}

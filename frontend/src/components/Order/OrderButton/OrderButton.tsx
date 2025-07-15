@@ -1,9 +1,9 @@
 import { PriceButton } from '@/components/Order/OrderButton/OrderButton.style.ts';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
 import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
+import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
 
 interface Props {
   id: number;
@@ -14,12 +14,12 @@ interface Props {
   }
 }
 
-export default function OrderButton({ id, count, receiverForm }: Props) {
+export default function OrderButton({ id, ranking, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
   const { submittedRef } = receiverForm;
   const navigate = useNavigate();
 
-  const item = JSON.parse(localStorage.getItem(EXPANDED_LIST_STORAGE_ID))[id - 1];
+  const item = ranking.find(item => Number(item.id) === id);
   const price = item.price.sellingPrice * count;
 
   const onSubmit = data => {
