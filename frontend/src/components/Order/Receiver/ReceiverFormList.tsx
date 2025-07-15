@@ -62,7 +62,7 @@ export default function ReceiverFormList(
             rules={{
               validate: {
                 format: value => isValidPhoneFlexible(value) || '전화번호 형식이 올바르지 않습니다',
-                duplicate: value => isSamePhoneNumber(value, index),
+                duplicate: value => isSamePhoneNumber(value, index) || '전화번호가 중복되어 있습니다',
               }
             }}
             error={errors?.receiverInfo?.[index]?.phone}

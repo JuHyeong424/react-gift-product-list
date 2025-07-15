@@ -10,7 +10,7 @@ import SortSpan from "@/components/Common/SortOption/SortOption"
 import RankingCard from '@/components/Common/RankingCard/RankingCard';
 import useSelectedState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
-import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
+import useFetchRanking from '@/hooks/useFetchRanking.ts';
 import { Loading } from '@/components/GiftThema/GiftThema.styles.ts';
 
 export default function GiftRanking() {

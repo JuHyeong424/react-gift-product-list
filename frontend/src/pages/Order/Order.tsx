@@ -8,7 +8,7 @@ import OrderButton from '@/components/Order/OrderButton/OrderButton.tsx';
 import Sender from '@/components/Order/Sender/Sender.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
-import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
+import useFetchRanking from '@/hooks/useFetchRanking.ts';
 
 export default function Order() {
   const params = useParams<{ id: string }>();

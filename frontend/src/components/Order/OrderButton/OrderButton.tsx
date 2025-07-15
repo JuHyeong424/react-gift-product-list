@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
-import useFetchRanking from '@/hooks/order/useFetchRanking.ts';
+import useFetchRanking from '@/hooks/useFetchRanking.ts';
 
 interface Props {
   id: number;
