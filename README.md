@@ -8,7 +8,7 @@ cd backend
 
 npm install
 
-npx nest start
+npm install -g @nestjs/cli
 
 ### frontend
 cd frontend
