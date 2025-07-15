@@ -10,7 +10,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
 
 export default function Order() {
-  const { id } = useParams();
+  const params = useParams<{ id: string }>();
+  const id = Number(params.id);
   const [count ,setCount] = useState(0);
   const receiverForm = useReceiverForm();
 

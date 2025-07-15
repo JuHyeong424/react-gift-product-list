@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import My from '@/pages/My/My.tsx';
 import Order from '@/pages/Order/Order.tsx';
 
-const App: () => JSX.Element = () => {
+const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>

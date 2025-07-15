@@ -1,9 +1,10 @@
 import { ErrorMessage, TextArea } from '@/components/Order/Message/Message.style.ts';
+import type { FieldError } from 'react-hook-form';
 
 interface Props {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  error?: { message?: string };
+  error?: FieldError;
 }
 
 export default function MessageInput({ value, onChange, error }: Props) {

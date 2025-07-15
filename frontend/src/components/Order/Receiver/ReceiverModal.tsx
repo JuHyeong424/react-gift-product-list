@@ -1,4 +1,3 @@
-
 import {
   BaseContainer,
   BlurContainer,
@@ -7,6 +6,21 @@ import {
   ModalTitle,
 } from '@/components/Order/Receiver/Receiver.style.ts';
 import ReceiverFormList from '@/components/Order/Receiver/ReceiverFormList.tsx';
+import type { FieldArrayWithId, FieldErrors, useForm, UseFormRegister } from 'react-hook-form';
+import type { Receiver } from '@/types/order.ts';
+
+interface ReceiverModalProps {
+  setModal: (value: boolean) => void;
+  fields: FieldArrayWithId<Receiver[], 'receiverInfo'>[];
+  register: UseFormRegister<any>;
+  handleAdd: () => void;
+  handleSubmit: ReturnType<typeof useForm>['handleSubmit'];
+  onSubmit: (data: any) => void;
+  remove: (index: number) => void;
+  errors: FieldErrors;
+  handleCancle: () => void;
+  isSamePhoneNumber: (phone: string, index: number) => boolean;
+}
 
 export default function ReceiverModal(
   {
@@ -20,7 +34,7 @@ export default function ReceiverModal(
     errors,
     handleCancle,
     isSamePhoneNumber,
-  }) {
+  }: ReceiverModalProps) {
   return (
     <>
       <BlurContainer onClick={() => setModal(false)} />

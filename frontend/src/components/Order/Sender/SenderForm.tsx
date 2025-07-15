@@ -1,6 +1,12 @@
 import { SenderInput, SendError, SendInfo } from '@/components/Order/Sender/Sender.style.ts';
 
-export default function SenderForm({ value, onChange, error }) {
+interface Props {
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  error?: { message?: string };
+}
+
+export default function SenderForm({ value, onChange, error }: Props) {
   return (
     <>
       <SenderInput

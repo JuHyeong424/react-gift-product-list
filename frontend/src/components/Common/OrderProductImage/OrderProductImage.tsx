@@ -6,11 +6,18 @@ import {
   ItemPrice,
 } from '@/components/Common/OrderProductImage/OrderProductImage.style.ts';
 
-export default function OrderProductImage({ image, name, brand, price }) {
+interface Props {
+  image: string;
+  name: string;
+  brand: string;
+  price: number | string;
+}
+
+export default function OrderProductImage({ image, name, brand, price }: Props) {
   return (
     <ItemImageWrapper>
       <ItemImage>
-        <img src={image} alt={image.name} />
+        <img src={image} alt={name} />
       </ItemImage>
 
       <div>

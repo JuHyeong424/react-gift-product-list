@@ -5,7 +5,11 @@ import {
 import Item from "@/components/Common/OrderProductImage/OrderProductImage.tsx"
 import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
 
-export default function ItemInfo({ id }) {
+interface Props {
+  id: number;
+}
+
+export default function ItemInfo({ id }: Props) {
   const list = JSON.parse(localStorage.getItem(EXPANDED_LIST_STORAGE_ID) || '[]');
   const data = list[id - 1];
 

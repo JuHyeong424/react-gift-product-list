@@ -5,8 +5,14 @@ import {
   RecevierTitle,
   TitleButton,
 } from '@/components/Order/Receiver/Receiver.style.ts';
+import type { Receiver } from '@/types/order.ts';
 
-export default function ReceiverCurrentState({ openModal, submittedRef }) {
+interface Props {
+  openModal: () => void;
+  submittedRef: Receiver[] | null;
+}
+
+export default function ReceiverCurrentState({ openModal, submittedRef }: Props) {
   return (
     <ReceiverWrapper>
       <TitleButton>

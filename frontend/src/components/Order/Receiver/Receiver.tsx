@@ -4,8 +4,16 @@ import ReceiverModal from '@/components/Order/Receiver/ReceiverModal.tsx';
 import { addHandler, cancleHandler, openModalHandler, submitHandler } from '@/hooks/order/receiver/useReceiverHandlers.ts';
 import useReceiverModalControl from '@/hooks/order/receiver/useReceiverModalControl.ts';
 import useReceiverValidation from '@/hooks/order/receiver/useReceiverValidation.ts';
+import type useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
 
-export default function Receiver({ setCount, receiverForm }) {
+type ReceiverFormType = ReturnType<typeof useReceiverForm>;
+
+interface ReceiverProps {
+  setCount: (count: number) => void;
+  receiverForm: ReceiverFormType;
+}
+
+export default function Receiver({ setCount, receiverForm }: ReceiverProps) {
   // 모달 상태 제어
   const { modal, setModal } = useReceiverModalControl();
 
@@ -36,7 +44,7 @@ export default function Receiver({ setCount, receiverForm }) {
   // count 세기
   useEffect(() => {
     if (submittedRef.current) {
-      const total = submittedRef.current.reduce((acc, cur) => acc + Number(cur.count), 0);
+      const total = (submittedRef.current ?? []).reduce((acc, cur) => acc + Number(cur.count), 0);
       setCount(total);
     }
   }, [submittedRef.current]);

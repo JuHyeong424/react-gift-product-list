@@ -5,7 +5,16 @@ import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
 import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
 
-export default function OrderButton({ id, count, receiverForm }) {
+interface Props {
+  id: number;
+  count: number;
+  receiveForm: {
+    submittedRef: React.MutableRefObject<
+      { count: number}[] | null>
+  }
+}
+
+export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
   const { submittedRef } = receiverForm;
   const navigate = useNavigate();

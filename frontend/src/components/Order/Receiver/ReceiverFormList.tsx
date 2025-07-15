@@ -7,6 +7,23 @@ import {
 } from '@/components/Order/Receiver/Receiver.style.ts';
 import ReceiverInput from '@/components/Order/Receiver/ReceiverInput.tsx';
 import { isValidPhoneFlexible } from '@/utils/validation.ts';
+import type { FieldArrayWithId, FieldErrors, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import type { Receiver } from '@/types/order.ts';
+
+interface Props {
+  fields: FieldArrayWithId<Receiver[], 'id'>[]; // useFieldArray로부터 나오는 필드 배열 타입
+  register: UseFormRegister<{
+    receiverInfo: Receiver[];
+  }>;
+  handleSubmit: UseFormHandleSubmit<{
+    receiverInfo: Receiver[];
+  }>;
+  onSubmit: (data: { receiverInfo: Receiver[] }) => void;
+  remove: (index: number) => void;
+  errors: FieldErrors<{ receiverInfo: Receiver[] }>;
+  isSamePhoneNumber: (value: string, index: number) => boolean;
+  handleCancle: () => void;
+}
 
 export default function ReceiverFormList(
   {
@@ -18,7 +35,7 @@ export default function ReceiverFormList(
     errors,
     isSamePhoneNumber,
     handleCancle,
-  }
+  }: Props
 ) {
   return (
     <ReceiverForm onSubmit={handleSubmit(onSubmit)}>

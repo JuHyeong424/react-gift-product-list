@@ -13,17 +13,28 @@ import useSelectedState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
 import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
 
+interface Product {
+  name: string;
+  imageURL: string;
+  price: {
+    sellingPrice: string;
+  };
+  brandInfo: {
+    name: string;
+  }
+}
+
 export default function GiftRanking() {
   const navigate = useNavigate();
-  const [showCount, setShowCount] = useState(INITIAL_VISIBLE_GIFT_COUNT); // 초기에 6개 보여줌
-  const [category, setCategory] = useSelectedState("giftRankingCategory", "전체");
-  const [sort, setSort] = useSelectedState("giftRankingSort", "받고 싶어한");
+  const [showCount, setShowCount] = useState<number>(INITIAL_VISIBLE_GIFT_COUNT); // 초기에 6개 보여줌
+  const [category, setCategory] = useSelectedState<string>("giftRankingCategory", "전체");
+  const [sort, setSort] = useSelectedState<string>("giftRankingSort", "받고 싶어한");
 
   const handleToggle = () => {
     setShowCount(prev => (prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT));
   };
 
-  const expandedList = Array(TOTAL_GIFT_COUNT).fill(productList[0]);
+  const expandedList: Product[] = Array(TOTAL_GIFT_COUNT).fill(productList[0]);
   localStorage.setItem(EXPANDED_LIST_STORAGE_ID, JSON.stringify(expandedList));
 
   return (

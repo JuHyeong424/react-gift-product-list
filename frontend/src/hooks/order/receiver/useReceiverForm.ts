@@ -1,6 +1,6 @@
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useRef } from 'react';
-import type { Receiver } from '../../../types/order.ts';
+import type { Receiver } from '@/types/order.ts';
 
 export default function useReceiverForm() {
   // 받는 사람 정보를 저장할 배열 ref
