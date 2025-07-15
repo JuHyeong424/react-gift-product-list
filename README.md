@@ -1,5 +1,5 @@
 # react-gift-product-list
-## 실행
+## 프로젝트 세팅
 ### root
 npm install
 
