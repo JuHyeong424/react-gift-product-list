@@ -6,7 +6,7 @@ import {
   ReceiverIndex,
 } from '@/components/Order/Receiver/Receiver.style.ts';
 import ReceiverInput from '@/components/Order/Receiver/ReceiverInput.tsx';
-import { isValidPhoneFlexible } from '@/utils/phoneValidation.ts';
+import { isValidPhoneFlexible } from '@/utils/validation.ts';
 
 export default function ReceiverFormList(
   {

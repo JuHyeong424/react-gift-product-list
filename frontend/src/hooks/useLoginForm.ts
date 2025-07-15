@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PASSWORD_LENGTH } from '../constants/password.ts';
+import { isValidEmailRegex } from '@/utils/validation.ts';
 
 export const useLoginForm = () => {
   const [id, setId] = useState('');
@@ -7,15 +8,14 @@ export const useLoginForm = () => {
   const [password, setPassword] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(true);
 
-  const handleEmailCheck = e => {
+  const handleEmailCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setId(value);
 
-    const emailRegex= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValidEmail(emailRegex.test(value));
+    setIsValidEmail(isValidEmailRegex(value));
   }
 
-  const handlePasswordCheck = e => {
+  const handlePasswordCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
 

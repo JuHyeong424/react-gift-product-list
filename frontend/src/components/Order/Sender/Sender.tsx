@@ -8,8 +8,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 export default function Sender() {
   const {
     control,
-    setValue,
-    trigger,
     formState: { errors },
   } = useFormContext();
 
@@ -29,16 +27,6 @@ export default function Sender() {
           />
         )}
       />
-      {/*<SenderForm*/}
-      {/*  handleSubmit={handleSubmit}*/}
-      {/*  onSubmit={onSubmit}*/}
-      {/*  register={register}*/}
-      {/*  text={text}*/}
-      {/*  setValue={setValue}*/}
-      {/*  watchValidation={watchValidation}*/}
-      {/*  trigger={trigger}*/}
-      {/*  error={errors.sender}*/}
-      {/*/>*/}
     </SenderWrapper>
   )
 }
