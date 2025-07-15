@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Global, ThemeProvider } from '@emotion/react';
-import { JSX } from 'react';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login/Login';
 import globalStyle from '@/styles/global';
