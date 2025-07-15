@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { THEME_URL } from '@/constants/url.ts';
 
 interface Theme {
   themeId: number;
@@ -15,7 +16,7 @@ export default function useFetchThemes() {
   useEffect(() => {
     const fetchThemes = async() => {
       try {
-        const res = await axios.get('http://localhost:3000/api/themes');
+        const res = await axios.get(THEME_URL);
         setThemes(res.data.data);
       } catch (e) {
         console.error('GiftTheme api 오류', e);

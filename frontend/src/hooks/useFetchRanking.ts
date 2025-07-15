@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { RANKING_URL } from '@/constants/url.ts';
 
 interface Ranking {
   id: string | number;
@@ -25,7 +26,7 @@ export default function useFetchRanking() {
   useEffect(() => {
     const fetchRanking = async() => {
       try {
-        const res = await axios.get('http://localhost:3000/api/products/ranking');
+        const res = await axios.get(RANKING_URL);
         setRanking(res.data.data);
       } catch (e) {
         console.log("Ranking api 에러", e);

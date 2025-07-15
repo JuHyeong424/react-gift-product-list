@@ -20,8 +20,6 @@ export default function GiftThema() {
     return null;
   }
 
-  console.log(themes);
-
   return (
     <Section>
       <Title>선물 테마</Title>
