@@ -2,8 +2,11 @@
 
 ## 실행 방법
 
-- npm install
-- npm run start
+cd backend
+
+npm install
+
+npm install -g @nestjs/cli
 
 ## API
 http://localhost:3000
