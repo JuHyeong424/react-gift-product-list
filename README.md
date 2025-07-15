@@ -1,4 +1,20 @@
 # react-gift-product-list
+## 실행
+### root
+npm install
+
+### backend
+cd backend
+npm install
+npx nest start
+
+### frontend
+cd frontend
+npm install
+npm install -D vite
+
+#
+
 ## backend
 Next.ts
 
