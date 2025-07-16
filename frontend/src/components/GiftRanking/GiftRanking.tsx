@@ -81,7 +81,7 @@ export default function GiftRanking() {
                     navigate(
                       sessionStorage.getItem('splitedId')
                         ?`/order/${item.id}`
-                        : '/login', { state: { from: `/order/${item.id}`}}
+                        : '/login', { state: { ranking, loading, from: `/order/${item.id}`}}
                     )}
                 />
               ))}
