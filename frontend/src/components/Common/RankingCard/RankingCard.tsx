@@ -1,10 +1,12 @@
 import {
-  BrandName, Card,
-  ImageWrapper, Price,
+  BrandName,
+  Card,
+  ImageWrapper,
+  Price,
   ProductImage,
   ProductName,
   RankBadge,
-} from "@/components/Common/RankingCard/RankingCard.styles";
+} from '@/components/Common/RankingCard/RankingCard.styles';
 
 interface Props {
   rank: number;

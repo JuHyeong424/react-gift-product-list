@@ -1,7 +1,14 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '@/components/Header/Header';
-import { Alert, Container, InputWrapper, LoginButton, LogoImg, StyledInput } from '@/pages/Login/Login.styles';
-import { KAKAO_LOGO_SVG } from "@/assets/svg/kakaoLogo";
+import {
+  Alert,
+  Container,
+  InputWrapper,
+  LoginButton,
+  LogoImg,
+  StyledInput,
+} from '@/pages/Login/Login.styles';
+import { KAKAO_LOGO_SVG } from '@/assets/svg/kakaoLogo';
 import { useLoginForm } from '@/hooks/useLoginForm.ts';
 import { PASSWORD_LENGTH } from '@/constants/password.ts';
 
@@ -26,23 +33,20 @@ const Login = () => {
       return;
     }
 
-    const splitedId = id.split("@")[0];
+    const splitedId = id.split('@')[0];
 
     sessionStorage.setItem('splitedId', splitedId);
     sessionStorage.setItem('email', id);
 
     const fallback = location.state?.from || '/';
     navigate(fallback);
-  }
+  };
 
   return (
     <div>
       <Header />
       <Container>
-        <LogoImg
-          src={KAKAO_LOGO_SVG}
-          alt="kakao-logo"
-        />
+        <LogoImg src={KAKAO_LOGO_SVG} alt="kakao-logo" />
 
         <form onSubmit={handleLogin}>
           <InputWrapper>
@@ -69,17 +73,16 @@ const Login = () => {
                 onChange={handlePasswordCheck}
               />
               {!isValidPassword &&
-                (password
-                    ? (password.length < PASSWORD_LENGTH && <Alert>비밀번호는 최소 8글자 이상이어야 합니다.</Alert>)
-                    : <Alert>비밀번호를 입력해주세요.</Alert>
-                )}
+                (password ? (
+                  password.length < PASSWORD_LENGTH && (
+                    <Alert>비밀번호는 최소 8글자 이상이어야 합니다.</Alert>
+                  )
+                ) : (
+                  <Alert>비밀번호를 입력해주세요.</Alert>
+                ))}
             </>
-
           </InputWrapper>
-          <LoginButton
-            type="submit"
-            disabled={isFormValid}
-          >
+          <LoginButton type="submit" disabled={isFormValid}>
             로그인
           </LoginButton>
         </form>

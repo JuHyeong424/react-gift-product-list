@@ -2,12 +2,18 @@ import {
   InfoList,
   ModalBottomBtn,
   ModalCancleBtn,
-  ModalFinishBtn, ReceiverForm,
+  ModalFinishBtn,
+  ReceiverForm,
   ReceiverIndex,
 } from '@/components/Order/Receiver/Receiver.style.ts';
 import ReceiverInput from '@/components/Order/Receiver/ReceiverInput.tsx';
 import { isValidPhoneFlexible } from '@/utils/validation.ts';
-import type { FieldArrayWithId, FieldErrors, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import type {
+  FieldArrayWithId,
+  FieldErrors,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from 'react-hook-form';
 import type { Receiver } from '@/types/order.ts';
 
 interface Props {
@@ -25,25 +31,25 @@ interface Props {
   handleCancle: () => void;
 }
 
-export default function ReceiverFormList(
-  {
-    fields,
-    register,
-    handleSubmit,
-    onSubmit,
-    remove,
-    errors,
-    isSamePhoneNumber,
-    handleCancle,
-  }: Props
-) {
+export default function ReceiverFormList({
+  fields,
+  register,
+  handleSubmit,
+  onSubmit,
+  remove,
+  errors,
+  isSamePhoneNumber,
+  handleCancle,
+}: Props) {
   return (
     <ReceiverForm onSubmit={handleSubmit(onSubmit)}>
       {fields.map((field, index) => (
         <InfoList key={field.id} isLast={index === fields.length - 1}>
           <ReceiverIndex>
             <span>받는 사람 {index + 1}</span>
-            <button type="button" onClick={() => remove(index)}>X</button>
+            <button type="button" onClick={() => remove(index)}>
+              X
+            </button>
           </ReceiverIndex>
 
           <ReceiverInput
@@ -61,9 +67,11 @@ export default function ReceiverFormList(
             register={register}
             rules={{
               validate: {
-                format: value => isValidPhoneFlexible(value) || '전화번호 형식이 올바르지 않습니다',
-                duplicate: value => isSamePhoneNumber(value, index),
-              }
+                format: (value) =>
+                  isValidPhoneFlexible(value) || '전화번호 형식이 올바르지 않습니다',
+                duplicate: (value) =>
+                  isSamePhoneNumber(value, index) || '전화번호가 중복되어 있습니다',
+              },
             }}
             error={errors?.receiverInfo?.[index]?.phone}
           />
@@ -75,12 +83,11 @@ export default function ReceiverFormList(
             register={register}
             rules={{
               validate: {
-                positive: value => value > 0 || '구매 수량은 1개 이상이어야 해요.',
-              }
+                positive: (value) => value > 0 || '구매 수량은 1개 이상이어야 해요.',
+              },
             }}
             error={errors?.receiverInfo?.[index]?.count}
           />
-
         </InfoList>
       ))}
 

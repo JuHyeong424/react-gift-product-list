@@ -29,6 +29,6 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
+frontend/.env
 .env.production
 >>>>>>> 151bc1bbd724e0a783aa25f114eb68ec0b0511d8

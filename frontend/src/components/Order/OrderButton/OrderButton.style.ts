@@ -13,4 +13,5 @@ export const PriceButton = styled.button`
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-`
+
+`;

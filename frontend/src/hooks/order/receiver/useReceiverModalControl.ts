@@ -5,9 +5,11 @@ export default function useReceiverModalControl() {
 
   // 모달 상태 스크롤 제어
   useEffect(() => {
-    if (modal) { // 스크롤 막기
+    if (modal) {
+      // 스크롤 막기
       document.body.style.overflow = 'hidden';
-    } else { // 다시 하용
+    } else {
+      // 다시 하용
       document.body.style.overflow = 'auto';
     }
 
@@ -18,6 +20,7 @@ export default function useReceiverModalControl() {
   }, [modal]);
 
   return {
-    modal, setModal
-  }
+    modal,
+    setModal,
+  };
 }

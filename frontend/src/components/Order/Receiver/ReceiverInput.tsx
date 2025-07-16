@@ -11,7 +11,15 @@ interface Props {
   error?: FieldError | null;
 }
 
-export default function ReceiverInput({ type = 'text', label, name, placeholder, register, rules, error }: Props) {
+export default function ReceiverInput({
+  type = 'text',
+  label,
+  name,
+  placeholder,
+  register,
+  rules,
+  error,
+}: Props) {
   return (
     <ReceiverItem>
       <span>{label}</span>

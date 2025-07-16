@@ -13,22 +13,23 @@ export default function useReceiverForm() {
     control,
     reset,
     getValues,
-    handleSubmit, watch,
-    formState: { errors }
+    handleSubmit,
+    watch,
+    formState: { errors },
   } = useForm({
     defaultValues: {
-      receiverInfo: [{ name: "", phone: "", count: 1 }],
+      receiverInfo: [{ name: '', phone: '', count: 1 }],
     },
     mode: 'onChange',
   });
 
-  const { fields , append, remove } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
-    name: "receiverInfo",
+    name: 'receiverInfo',
   });
 
   // 현재 모든 입력 값들을 watch
-  const values = watch("receiverInfo");
+  const values = watch('receiverInfo');
 
   return {
     register,

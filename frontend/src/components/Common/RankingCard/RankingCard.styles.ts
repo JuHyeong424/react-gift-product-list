@@ -2,57 +2,57 @@ import styled from '@emotion/styled';
 import { RANKING_IN_THREE } from '@/constants/RankingConstants.ts';
 
 export const Card = styled.div`
-    background: #fff;
-    
-    &:hover {
-        cursor: pointer;
-    }
+  background: #fff;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ImageWrapper = styled.div`
-    position: relative;
-`
+  position: relative;
+`;
 
 export const RankBadge = styled.div<{ rank: number }>`
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 24px;
-    height: 24px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.gray00};
-    background-color: ${({ rank }) => rank <= RANKING_IN_THREE ? '#ff3b30' : '#888'};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.gray00};
+  background-color: ${({ rank }) => (rank <= RANKING_IN_THREE ? '#ff3b30' : '#888')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 `;
 
 export const ProductImage = styled.img`
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-    aspect-ratio: 1;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 1;
 `;
 
 export const BrandName = styled.div`
-    margin-top: 8px;
-    font-size: 13px;
-    color: #888;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #888;
 `;
 
 export const ProductName = styled.div`
-    margin-top: 4px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #333;
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
 `;
 
 export const Price = styled.div`
-    margin-top: 6px;
-    font-size: 15px;
-    font-weight: bold;
-    color: #000;
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
 `;

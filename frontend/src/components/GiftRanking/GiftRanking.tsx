@@ -1,41 +1,44 @@
 import { useState } from 'react';
-import { productList } from '@/data/productList';
 import {
+  MoreButton,
+  Grid,
+  Section,
+  Title,
   CategoryFilter,
-  MoreButton, Grid, Section, Title,
   SortOptions,
+  Loading,
+  Error,
 } from '@/components/GiftRanking/GiftRanking.styles';
-import { categories, sorts, INITIAL_VISIBLE_GIFT_COUNT, TOTAL_GIFT_COUNT } from '@/constants/RankingConstants';
-import FilterButton from '@/components/Common/FilterButton/FilterButton';
-import SortSpan from "@/components/Common/SortOption/SortOption"
+import {
+  categories,
+  INITIAL_VISIBLE_GIFT_COUNT,
+  rankTypeMap,
+  sorts,
+  targetTypeMap,
+  TOTAL_GIFT_COUNT,
+} from '@/constants/RankingConstants';
 import RankingCard from '@/components/Common/RankingCard/RankingCard';
-import useSelectedState from '@/hooks/useLocalStorageState.ts';
+import useLocalStorageState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
-import { EXPANDED_LIST_STORAGE_ID } from '@/constants/storage.ts';
-
-interface Product {
-  name: string;
-  imageURL: string;
-  price: {
-    sellingPrice: string;
-  };
-  brandInfo: {
-    name: string;
-  }
-}
+import useFetchRanking from '@/hooks/useFetchRanking.ts';
+import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
+import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
 
 export default function GiftRanking() {
   const navigate = useNavigate();
   const [showCount, setShowCount] = useState<number>(INITIAL_VISIBLE_GIFT_COUNT); // 초기에 6개 보여줌
-  const [category, setCategory] = useSelectedState<string>("giftRankingCategory", "전체");
-  const [sort, setSort] = useSelectedState<string>("giftRankingSort", "받고 싶어한");
+  const [category, setCategory] = useLocalStorageState<string>('giftRankingCategory', '전체');
+  const [sort, setSort] = useLocalStorageState<string>('giftRankingSort', '받고 싶어한');
+  const targetType = targetTypeMap[category];
+  const rankType = rankTypeMap[sort];
+
+  const { ranking, loading, error } = useFetchRanking(targetType, rankType);
 
   const handleToggle = () => {
-    setShowCount(prev => (prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT));
+    setShowCount((prev) =>
+      prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT,
+    );
   };
-
-  const expandedList: Product[] = Array(TOTAL_GIFT_COUNT).fill(productList[0]);
-  localStorage.setItem(EXPANDED_LIST_STORAGE_ID, JSON.stringify(expandedList));
 
   return (
     <Section>
@@ -54,7 +57,7 @@ export default function GiftRanking() {
       </CategoryFilter>
 
       <SortOptions>
-        {sorts.map(option => (
+        {sorts.map((option) => (
           <SortSpan
             key={option}
             label={option}
@@ -64,28 +67,35 @@ export default function GiftRanking() {
         ))}
       </SortOptions>
 
-      <Grid>
-        {expandedList.slice(0, showCount).map((item, index) => (
-          <RankingCard
-            key={item.name + index}
-            rank={index + 1}
-            image={item.imageURL}
-            name={item.name}
-            price={item.price.sellingPrice}
-            brand={item.brandInfo.name}
-            onClick={() =>
-              navigate(
-                sessionStorage.getItem('splitedId')
-                ?`/order/${index + 1}`
-                : '/login', { state: { from: `/order/${index + 1}`}}
-              )}
-          />
-        ))}
-      </Grid>
+      {loading ? (
+        <Loading>로딩 중...</Loading>
+      ) : error || !Array.isArray(ranking) || ranking.length === 0 ? (
+        <Error>상품이 없습니다.</Error>
+      ) : (
+        <>
+          <Grid>
+            {ranking.slice(0, showCount).map((item, index) => (
+              <RankingCard
+                key={item.name + index}
+                rank={index + 1}
+                image={item.imageURL}
+                name={item.name}
+                price={item.price.sellingPrice}
+                brand={item.brandInfo.name}
+                onClick={() =>
+                  navigate(sessionStorage.getItem('splitedId') ? `/order/${item.id}` : '/login', {
+                    state: { ranking, loading, from: `/order/${item.id}` },
+                  })
+                }
+              />
+            ))}
+          </Grid>
 
-      <MoreButton onClick={handleToggle}>
-        {showCount === INITIAL_VISIBLE_GIFT_COUNT ? '더보기' : '접기'}
-      </MoreButton>
+          <MoreButton onClick={handleToggle}>
+            {showCount === INITIAL_VISIBLE_GIFT_COUNT ? '더보기' : '접기'}
+          </MoreButton>
+        </>
+      )}
     </Section>
   );
 }

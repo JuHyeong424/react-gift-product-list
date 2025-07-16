@@ -18,5 +18,5 @@ export default function MessageInput({ value, onChange, error }: Props) {
       />
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </>
-  )
+  );
 }

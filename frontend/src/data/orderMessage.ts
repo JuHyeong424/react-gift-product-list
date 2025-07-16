@@ -407,4 +407,4 @@ export const orderMessage = [
     imageUrl: 'https://t1.daumcdn.net/gift/message-card/template/image/20211230_KBGQH.png',
     defaultTextMessage: '사랑해요!',
   },
-]
+];

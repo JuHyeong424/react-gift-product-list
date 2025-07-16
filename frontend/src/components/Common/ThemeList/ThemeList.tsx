@@ -7,9 +7,9 @@ interface Props {
 
 export default function ThemeList({ image, name }: Props) {
   return (
-      <ThemeCard>
-        <img src={image} alt={name} />
-        <p>{name}</p>
-      </ThemeCard>
-    )
+    <ThemeCard>
+      <img src={image} alt={name} />
+      <p>{name}</p>
+    </ThemeCard>
+  );
 }

@@ -11,5 +11,5 @@ export default function SortOption({ label, isActive, onClick }: Props) {
     <Span isActive={isActive} onClick={onClick}>
       {label}
     </Span>
-  )
+  );
 }
