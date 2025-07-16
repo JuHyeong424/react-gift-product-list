@@ -11,11 +11,11 @@ import { useEffect, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 export default function Message() {
-  const { control, setValue, trigger  } = useFormContext();
+  const { control, setValue, trigger } = useFormContext();
   const [image, setImage] = useState<string>(orderMessage[0].imageUrl);
 
   useEffect(() => {
-    setValue('textMessage', orderMessage[0].defaultTextMessage)
+    setValue('textMessage', orderMessage[0].defaultTextMessage);
   }, [setValue]);
 
   return (
@@ -44,11 +44,7 @@ export default function Message() {
         control={control}
         rules={{ required: '메시지를 입력해주세요.' }}
         render={({ field, fieldState }) => (
-          <MessageInput
-            value={field.value}
-            onChange={field.onChange}
-            error={fieldState.error}
-          />
+          <MessageInput value={field.value} onChange={field.onChange} error={fieldState.error} />
         )}
       />
     </Wrapper>

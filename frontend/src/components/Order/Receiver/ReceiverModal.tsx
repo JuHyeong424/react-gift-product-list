@@ -22,19 +22,18 @@ interface ReceiverModalProps {
   isSamePhoneNumber: (phone: string, index: number) => boolean;
 }
 
-export default function ReceiverModal(
-  {
-    setModal,
-    fields,
-    register,
-    handleAdd,
-    handleSubmit,
-    onSubmit,
-    remove,
-    errors,
-    handleCancle,
-    isSamePhoneNumber,
-  }: ReceiverModalProps) {
+export default function ReceiverModal({
+  setModal,
+  fields,
+  register,
+  handleAdd,
+  handleSubmit,
+  onSubmit,
+  remove,
+  errors,
+  handleCancle,
+  isSamePhoneNumber,
+}: ReceiverModalProps) {
   return (
     <>
       <BlurContainer onClick={() => setModal(false)} />
@@ -56,5 +55,5 @@ export default function ReceiverModal(
         />
       </BaseContainer>
     </>
-  )
+  );
 }

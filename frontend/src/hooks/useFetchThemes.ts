@@ -14,5 +14,5 @@ export default function useFetchThemes() {
     themes,
     loading,
     error,
-  }
+  };
 }

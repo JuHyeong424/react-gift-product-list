@@ -10,5 +10,5 @@ export default function NotFound() {
       </p>
       <StyledLink to="/">홈으로 돌아가기</StyledLink>
     </Container>
-  )
+  );
 }

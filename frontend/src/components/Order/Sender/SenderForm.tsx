@@ -15,9 +15,11 @@ export default function SenderForm({ value, onChange, error }: Props) {
         placeholder="이름을 입력하세요."
         isActive={error}
       />
-      {error ? <SendError>{error.message}</SendError> :
-        <SendInfo>* 실제 선물 발송 시 발신자이름으로 반영되는 정보입니다.</SendInfo>}
-
+      {error ? (
+        <SendError>{error.message}</SendError>
+      ) : (
+        <SendInfo>* 실제 선물 발송 시 발신자이름으로 반영되는 정보입니다.</SendInfo>
+      )}
     </>
-  )
+  );
 }

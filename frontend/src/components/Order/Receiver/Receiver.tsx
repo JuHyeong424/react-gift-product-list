@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import ReceiverCurrentState from '@/components/Order/Receiver/ReceiverCurrentState.tsx';
 import ReceiverModal from '@/components/Order/Receiver/ReceiverModal.tsx';
-import { addHandler, cancleHandler, openModalHandler, submitHandler } from '@/hooks/order/receiver/useReceiverHandlers.ts';
+import {
+  addHandler,
+  cancleHandler,
+  openModalHandler,
+  submitHandler,
+} from '@/hooks/order/receiver/useReceiverHandlers.ts';
 import useReceiverModalControl from '@/hooks/order/receiver/useReceiverModalControl.ts';
 import useReceiverValidation from '@/hooks/order/receiver/useReceiverValidation.ts';
 import type useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
@@ -51,10 +56,7 @@ export default function Receiver({ setCount, receiverForm }: ReceiverProps) {
 
   return (
     <>
-      <ReceiverCurrentState
-        openModal={handleOpenModal}
-        submittedRef={submittedRef.current}
-      />
+      <ReceiverCurrentState openModal={handleOpenModal} submittedRef={submittedRef.current} />
 
       {modal && (
         <ReceiverModal
@@ -71,5 +73,5 @@ export default function Receiver({ setCount, receiverForm }: ReceiverProps) {
         />
       )}
     </>
-  )
+  );
 }

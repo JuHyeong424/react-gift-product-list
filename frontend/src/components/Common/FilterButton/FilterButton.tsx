@@ -1,4 +1,4 @@
-import { Wrapper } from "@/components/Common/FilterButton/FilterButton.styles";
+import { Wrapper } from '@/components/Common/FilterButton/FilterButton.styles';
 
 interface Props {
   icon?: React.ReactNode;
@@ -13,5 +13,5 @@ export default function FilterButton({ icon, label, isActive, onClick }: Props) 
       {icon && <div>{icon}</div>}
       <p>{label}</p>
     </Wrapper>
-  )
+  );
 }

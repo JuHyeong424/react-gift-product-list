@@ -7,17 +7,17 @@ export default function useFetchData<T = any>(url: string, params?: Record<strin
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get<{data: T[]}>(url, { params });
+        const res = await axios.get<{ data: T[] }>(url, { params });
         setData(res.data.data);
       } catch (e) {
-        console.log("api 에러", e);
+        console.log('api 에러', e);
         setError(true);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchData();
   }, [url, params?.targetType, params?.rankType]);
@@ -26,5 +26,5 @@ export default function useFetchData<T = any>(url: string, params?: Record<strin
     data,
     loading,
     error,
-  }
+  };
 }

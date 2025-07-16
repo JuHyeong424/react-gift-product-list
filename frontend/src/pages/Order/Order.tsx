@@ -18,7 +18,7 @@ export default function Order() {
   const ranking = state?.ranking ?? [];
   const loading = state?.loading ?? false;
 
-  const [count ,setCount] = useState(0);
+  const [count, setCount] = useState(0);
   const receiverForm = useReceiverForm();
 
   useEffect(() => {
@@ -33,27 +33,27 @@ export default function Order() {
       senderName: '',
       receiverName: '',
       receiverPhone: '',
-    }
-  })
+    },
+  });
 
   return (
     <Wrapper>
       <Header />
       <FormProvider {...methods}>
         <>
-          <Message  />
-          <Sender  />
-          <Receiver setCount={setCount} receiverForm={receiverForm}/>
+          <Message />
+          <Sender />
+          <Receiver setCount={setCount} receiverForm={receiverForm} />
           {loading ? (
-              <div>로딩중</div>
-            ) : (
-              <>
-                <ItemInfo id={id} ranking={ranking}/>
-                <OrderButton id={id} ranking={ranking} count={count} receiverForm={receiverForm}/>
-              </>
+            <div>로딩중</div>
+          ) : (
+            <>
+              <ItemInfo id={id} ranking={ranking} />
+              <OrderButton id={id} ranking={ranking} count={count} receiverForm={receiverForm} />
+            </>
           )}
         </>
       </FormProvider>
     </Wrapper>
-  )
+  );
 }

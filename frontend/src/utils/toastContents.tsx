@@ -12,5 +12,5 @@ export function renderOrderSuccessToast(
       <div>발신자 이름: {sender}</div>
       <div>메시지: {message}</div>
     </div>
-  )
+  );
 }

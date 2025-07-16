@@ -1,7 +1,8 @@
 import {
   ReceiverAddBtn,
   ReceiverInfo,
-  ReceiverTable, ReceiverWrapper,
+  ReceiverTable,
+  ReceiverWrapper,
   RecevierTitle,
   TitleButton,
 } from '@/components/Order/Receiver/Receiver.style.ts';
@@ -23,20 +24,20 @@ export default function ReceiverCurrentState({ openModal, submittedRef }: Props)
       {submittedRef && submittedRef.length > 0 ? (
         <ReceiverTable>
           <thead>
-          <tr>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>수량</th>
-          </tr>
+            <tr>
+              <th>이름</th>
+              <th>전화번호</th>
+              <th>수량</th>
+            </tr>
           </thead>
           <tbody>
-          {submittedRef.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.phone}</td>
-              <td>{item.count}</td>
-            </tr>
-          ))}
+            {submittedRef.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.phone}</td>
+                <td>{item.count}</td>
+              </tr>
+            ))}
           </tbody>
         </ReceiverTable>
       ) : (
@@ -46,5 +47,5 @@ export default function ReceiverCurrentState({ openModal, submittedRef }: Props)
         </ReceiverInfo>
       )}
     </ReceiverWrapper>
-  )
+  );
 }

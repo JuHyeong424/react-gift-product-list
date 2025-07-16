@@ -23,8 +23,10 @@ export default function OrderProductImage({ image, name, brand, price }: Props) 
       <div>
         <ItemName>{name}</ItemName>
         <ItemBrand>{brand}</ItemBrand>
-        <ItemPrice><span>상품가</span> {price}원</ItemPrice>
+        <ItemPrice>
+          <span>상품가</span> {price}원
+        </ItemPrice>
       </div>
     </ItemImageWrapper>
-  )
+  );
 }

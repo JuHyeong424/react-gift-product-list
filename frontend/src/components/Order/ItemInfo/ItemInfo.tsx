@@ -1,15 +1,12 @@
-import {
-  ItemTitle,
-  ItemWrapper,
-} from '@/components/Order/ItemInfo/ItemInfo.style.ts';
-import Item from "@/components/Common/OrderProductImage/OrderProductImage.tsx"
+import { ItemTitle, ItemWrapper } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
+import Item from '@/components/Common/OrderProductImage/OrderProductImage.tsx';
 
 interface Props {
   id: number;
 }
 
 export default function ItemInfo({ id, ranking }: Props) {
-  const item = ranking.find(item => Number(item.id) === id);
+  const item = ranking.find((item) => Number(item.id) === id);
 
   return (
     <ItemWrapper>
@@ -21,5 +18,5 @@ export default function ItemInfo({ id, ranking }: Props) {
         price={item.price.sellingPrice}
       />
     </ItemWrapper>
-  )
+  );
 }
