@@ -8,6 +8,7 @@ import OrderButton from '@/components/Order/OrderButton/OrderButton.tsx';
 import Sender from '@/components/Order/Sender/Sender.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
+import { Wrapper } from '@/pages/Order/Order.style.ts';
 
 export default function Order() {
   const params = useParams<{ id: string }>();
@@ -36,7 +37,7 @@ export default function Order() {
   })
 
   return (
-    <>
+    <Wrapper>
       <Header />
       <FormProvider {...methods}>
         <>
@@ -53,6 +54,6 @@ export default function Order() {
           )}
         </>
       </FormProvider>
-    </>
+    </Wrapper>
   )
 }

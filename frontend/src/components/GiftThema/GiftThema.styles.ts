@@ -16,6 +16,21 @@ export const ThemeListContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: ${({ theme }) => theme.spacing.spacing3};
+    width: max-content;
+    margin: 0 auto;
+
+    @media (max-width: 540px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 530px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 350px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 `;
 
 export const YellowBox = styled.div`
