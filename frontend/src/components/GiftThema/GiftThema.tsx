@@ -1,6 +1,8 @@
 import { Title, Section, ThemeListContainer, YellowBox, Loading } from '@/components/GiftThema/GiftThema.styles';
 import ThemeList from '@/components/Common/ThemeList/ThemeList';
 import useFetchThemes from '@/hooks/useFetchThemes.ts';
+import GiftThemaIsLoading from '@/components/GiftThema/GiftThemaIsLoading.tsx';
+import GiftThemaIsError from '@/components/GiftThema/GiftThemaIsError.tsx';
 
 export default function GiftThema() {
   const {
@@ -8,16 +10,11 @@ export default function GiftThema() {
   } = useFetchThemes();
 
   if (loading) {
-    return (
-      <Section>
-        <Title>선물 테마</Title>
-        <Loading>로딩 중...</Loading>
-      </Section>
-    )
+    return <GiftThemaIsLoading />
   }
 
   if (error || themes.length === 0) {
-    return null;
+    return <GiftThemaIsError />
   }
 
   return (

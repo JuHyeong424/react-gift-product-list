@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import useFetchRanking from '@/hooks/useFetchRanking.ts';
 import { Loading } from '@/components/GiftThema/GiftThema.styles.ts';
 import RankingFilterSelection from '@/components/Common/RankingFilterSelection/RankingFilterSelection.tsx';
+import GiftRankingIsLoading from '@/components/GiftRanking/GiftRankingIsLoading.tsx';
+import GiftRankingIsError from '@/components/GiftRanking/GiftRankingIsError.tsx';
 
 export default function GiftRanking() {
   const navigate = useNavigate();
@@ -24,21 +26,24 @@ export default function GiftRanking() {
 
   if (loading) {
     return (
-      <Section>
-        <Title>실시간 급상승 선물랭킹</Title>
-        <RankingFilterSelection
-          category={category}
-          setCategory={setCategory}
-          sort={sort}
-          setSort={setSort}
-        />
-        <Loading>로딩 중...</Loading>
-      </Section>
+      <GiftRankingIsLoading
+        cateogry={category}
+        setCategory={setCategory}
+        sort={sort}
+        setSort={setSort}
+      />
     )
   }
 
   if (error || ranking.length === 0) {
-    return null;
+    return (
+      <GiftRankingIsError
+        cateogry={category}
+        setCategory={setCategory}
+        sort={sort}
+        setSort={setSort}
+      />
+    );
   }
 
   const handleToggle = () => {

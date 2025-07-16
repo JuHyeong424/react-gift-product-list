@@ -31,3 +31,21 @@ export const MoreButton = styled.button`
     font-size: 14px;
     cursor: pointer;
 `;
+
+export const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 40px 0;
+`
+
+export const Error = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 40px 0;
+`
