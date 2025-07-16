@@ -1,3 +1,3 @@
-export const THEME_URL = 'http://localhost:3000/api/themes';
+export const THEME_URL = `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_THEME_URL}`;
 
-export const RANKING_URL = 'http://localhost:3000/api/products/ranking';
+export const RANKING_URL = `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_RANKING_URL}`;
