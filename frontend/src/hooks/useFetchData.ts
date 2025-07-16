@@ -9,7 +9,7 @@ export default function useFetchData<T = any>(url: string) {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const res = await axios.get(url);
+        const res = await axios.get<{data: T[]}>(url);
         setData(res.data.data);
       } catch (e) {
         console.log("api 에러", e);
