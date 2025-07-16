@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function useFetchData<T = any>(url: string) {
+export default function useFetchData<T = any>(url: string, params?: Record<string, any>) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -9,7 +9,7 @@ export default function useFetchData<T = any>(url: string) {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const res = await axios.get<{data: T[]}>(url);
+        const res = await axios.get<{data: T[]}>(url, { params });
         setData(res.data.data);
       } catch (e) {
         console.log("api 에러", e);
@@ -20,7 +20,7 @@ export default function useFetchData<T = any>(url: string) {
     }
 
     fetchData();
-  }, [url]);
+  }, [url, params?.targetType, params?.rankType]);
 
   return {
     data,

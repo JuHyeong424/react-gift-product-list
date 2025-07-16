@@ -2,9 +2,15 @@ import { useState } from 'react';
 import {
   MoreButton, Grid, Section, Title, CategoryFilter, SortOptions, Loading, Error,
 } from '@/components/GiftRanking/GiftRanking.styles';
-import { categories, INITIAL_VISIBLE_GIFT_COUNT, sorts, TOTAL_GIFT_COUNT } from '@/constants/RankingConstants';
+import {
+  categories,
+  INITIAL_VISIBLE_GIFT_COUNT, rankTypeMap,
+  sorts,
+  targetTypeMap,
+  TOTAL_GIFT_COUNT,
+} from '@/constants/RankingConstants';
 import RankingCard from '@/components/Common/RankingCard/RankingCard';
-import useSelectedState from '@/hooks/useLocalStorageState.ts';
+import useLocalStorageState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
 import useFetchRanking from '@/hooks/useFetchRanking.ts';
 import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
@@ -13,14 +19,16 @@ import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
 export default function GiftRanking() {
   const navigate = useNavigate();
   const [showCount, setShowCount] = useState<number>(INITIAL_VISIBLE_GIFT_COUNT); // 초기에 6개 보여줌
-  const [category, setCategory] = useSelectedState<string>("giftRankingCategory", "전체");
-  const [sort, setSort] = useSelectedState<string>("giftRankingSort", "받고 싶어한");
+  const [category, setCategory] = useLocalStorageState<string>("giftRankingCategory", "전체");
+  const [sort, setSort] = useLocalStorageState<string>("giftRankingSort", "받고 싶어한");
+  const targetType = targetTypeMap[category];
+  const rankType = rankTypeMap[sort];
 
   const {
     ranking,
     loading,
     error
-  } = useFetchRanking();
+  } = useFetchRanking(targetType, rankType);
 
   const handleToggle = () => {
     setShowCount(prev => (prev === INITIAL_VISIBLE_GIFT_COUNT ? TOTAL_GIFT_COUNT : INITIAL_VISIBLE_GIFT_COUNT));

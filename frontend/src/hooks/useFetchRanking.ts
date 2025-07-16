@@ -17,8 +17,11 @@ interface Ranking {
   }
 }
 
-export default function useFetchRanking() {
-  const { data: ranking ,loading, error } = useFetchData<Ranking>(RANKING_URL);
+export default function useFetchRanking(targetType: string, rankType: string) {
+  const { data: ranking ,loading, error } = useFetchData<Ranking>(RANKING_URL, {
+    targetType,
+    rankType,
+  });
 
   return {
     ranking,
