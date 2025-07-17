@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import * as qs from 'qs';
 
 export default function useFetchData<T>(url: string, params?: Record<string, any>) {
   const [data, setData] = useState<T | null>(null);
@@ -20,7 +21,7 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
     };
 
     fetchData();
-  }, [url, params?.targetType, params?.rankType]);
+  }, [url, qs.stringify(params)]); // 객체를 문자열로 변환하여 내용이 동일하면 감지x
 
   return {
     data,
