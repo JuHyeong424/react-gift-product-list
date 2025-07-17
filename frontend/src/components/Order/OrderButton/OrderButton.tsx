@@ -16,7 +16,6 @@ interface Props {
   };
 }
 
-
 export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
   const { submittedRef } = receiverForm;
