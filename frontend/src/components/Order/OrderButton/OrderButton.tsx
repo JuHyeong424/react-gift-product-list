@@ -5,6 +5,7 @@ import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { ItemTitle, ItemWrapper } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
+import { useEffect } from 'react';
 
 interface Props {
   id: number;
@@ -14,31 +15,26 @@ interface Props {
   };
 }
 
-export default function OrderButton({ id, ranking, count, receiverForm }: Props) {
+export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
   const { submittedRef } = receiverForm;
   const navigate = useNavigate();
-
   const { product, loading, error } = useFetchProductData(id);
 
-  if (loading) {
-    return (
-      <ItemWrapper>
-        <ItemTitle>상품 정보</ItemTitle>
-        <div>로딩 중...</div>
-      </ItemWrapper>
-    );
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        autoClose: 3000,
+      });
+      navigate('/');
+    }
+  }, [error]);
+
+  if (!product) {
+    return <div>상품 정보가 없습니다.</div>
   }
 
-  if (error || !product) {
-    return (
-      <ItemWrapper>
-        <ItemTitle>상품 정보</ItemTitle>
-        <div>상품 정보를 불러올 수 없습니다.</div>
-      </ItemWrapper>
-    );
-  }
-  const price = product.price.sellingPrice * count;
+  const price = product.price * count;
 
   const onSubmit = (data) => {
     if (!submittedRef.current || submittedRef.current.length === 0) return;
@@ -54,5 +50,13 @@ export default function OrderButton({ id, ranking, count, receiverForm }: Props)
     navigate('/');
   };
 
-  return <PriceButton onClick={handleSubmit(onSubmit)}>{price}원 주문하기</PriceButton>;
+  return (
+    <>
+      {loading ? (
+          <div>상품 정보를 불러올 수 없습니다.</div>
+        ) : (
+          <PriceButton onClick={handleSubmit(onSubmit)}>{price}원 주문하기</PriceButton>
+        )}
+    </>
+  )
 }

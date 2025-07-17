@@ -1,17 +1,25 @@
 import { Error, ItemTitle, ItemWrapper, Loading } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
 import Item from '@/components/Common/OrderProductImage/OrderProductImage.tsx';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function ItemInfo({ id }: number) {
+  const navigate = useNavigate();
   const { product, loading, error } = useFetchProductData(id);
 
-  if (error || !product) {
-    return (
-      <ItemWrapper>
-        <ItemTitle>상품 정보</ItemTitle>
-        <Error>상품 정보를 불러올 수 없습니다.</Error>
-      </ItemWrapper>
-    );
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        autoClose: 3000,
+      });
+      navigate('/');
+    }
+  }, [error]);
+
+  if (!product) {
+    return <div>상품 정보가 없습니다.</div>
   }
 
   return (
@@ -24,8 +32,8 @@ export default function ItemInfo({ id }: number) {
         <Item
           image={product.imageURL}
           name={product.name}
-          brand={product.brandInfo.name}
-          price={product.price.sellingPrice}
+          brand={product.brandName}
+          price={product.price}
         />
       )}
 

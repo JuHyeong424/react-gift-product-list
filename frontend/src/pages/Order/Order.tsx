@@ -14,9 +14,6 @@ export default function Order() {
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
   const location = useLocation();
-  // const state = location.state;
-  // const ranking = state?.ranking ?? [];
-  // const loading = state?.loading ?? false;
 
   const [count, setCount] = useState(0);
   const receiverForm = useReceiverForm();
