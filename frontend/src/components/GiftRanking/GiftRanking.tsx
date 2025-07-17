@@ -20,7 +20,7 @@ import {
 import RankingCard from '@/components/Common/RankingCard/RankingCard';
 import useLocalStorageState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
-import useFetchRanking from '@/hooks/useFetchRanking.ts';
+import useFetchRanking from '@/hooks/fetch/useFetchRanking.ts';
 import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
 import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
 

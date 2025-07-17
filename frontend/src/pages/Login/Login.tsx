@@ -29,9 +29,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (isFormValid) {
-      return;
-    }
+    if (isFormValid) return;
 
     const splitedId = id.split('@')[0];
 

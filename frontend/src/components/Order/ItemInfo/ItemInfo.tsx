@@ -1,6 +1,6 @@
 import { Error, ItemTitle, ItemWrapper, Loading } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
 import Item from '@/components/Common/OrderProductImage/OrderProductImage.tsx';
-import useFetchProductData from '@/hooks/useFetchProductData.ts';
+import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 
 export default function ItemInfo({ id }: number) {
   const { product, loading, error } = useFetchProductData(id);

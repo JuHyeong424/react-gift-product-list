@@ -1,5 +1,5 @@
-import { RANKING_URL } from '@/constants/url.ts';
-import useFetchData from '@/hooks/useFetchData.ts';
+import { RANKING_URL } from '../../../api/api.ts';
+import useFetchData from '@/hooks/fetch/useFetchData.ts';
 import type { Product } from '@/types/productData';
 
 export default function useFetchRanking(targetType: string, rankType: string) {

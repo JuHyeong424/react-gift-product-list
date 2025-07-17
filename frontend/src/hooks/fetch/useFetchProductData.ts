@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '@/constants/url.ts';
+import { BASE_URL } from '../../../api/api.ts';
 import type { Product } from '@/types/productData';
 
 export default function useFetchProductData(id: number) {

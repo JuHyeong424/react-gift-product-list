@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
-import useFetchProductData from '@/hooks/useFetchProductData.ts';
+import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { ItemTitle, ItemWrapper } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
 
 interface Props {

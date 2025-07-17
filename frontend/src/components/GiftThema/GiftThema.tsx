@@ -6,7 +6,7 @@ import {
   Loading,
 } from '@/components/GiftThema/GiftThema.styles';
 import ThemeList from '@/components/Common/ThemeList/ThemeList';
-import useFetchThemes from '@/hooks/useFetchThemes.ts';
+import useFetchThemes from '@/hooks/fetch/useFetchThemes.ts';
 
 export default function GiftThema() {
   const { themes, loading, error } = useFetchThemes();
