@@ -1,5 +1,5 @@
 import { Message, PlusButton, Wrapper } from '@/components/ChooseFriend/ChooseFriend.styes';
-import { CHOOSE_FRIEND_STORAGE_ID } from '@/constants/storage.ts';
+import { CHOOSE_FRIEND_STORAGE_ID } from '../../../storage/emailID.ts';
 
 export default function ChooseFriend() {
   const id = sessionStorage.getItem(CHOOSE_FRIEND_STORAGE_ID);
