@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function useFetchData<T = any>(url: string, params?: Record<string, any>) {
-  const [data, setData] = useState<T[]>([]);
+export default function useFetchData<T>(url: string, params?: Record<string, any>) {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get<{ data: T[] }>(url, { params });
+        const res = await axios.get<{ data: T }>(url, { params });
         setData(res.data.data);
       } catch (e) {
         console.log('api 에러', e);
