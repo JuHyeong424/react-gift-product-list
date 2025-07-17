@@ -16,6 +16,7 @@ interface Props {
   };
 }
 
+
 export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
   const { submittedRef } = receiverForm;
@@ -84,10 +85,10 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
   return (
     <>
       {loading ? (
-          <div>상품 정보를 불러올 수 없습니다.</div>
-        ) : (
-          <PriceButton onClick={handleSubmit(onSubmit)}>{price}원 주문하기</PriceButton>
-        )}
+        <div>상품 정보를 불러올 수 없습니다.</div>
+      ) : (
+        <PriceButton onClick={handleSubmit(onSubmit)}>{price}원 주문하기</PriceButton>
+      )}
     </>
   )
 }
