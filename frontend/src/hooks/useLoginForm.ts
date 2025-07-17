@@ -3,14 +3,14 @@ import { PASSWORD_LENGTH } from '../constants/password.ts';
 import { isValidEmailRegex } from '@/utils/validation.ts';
 
 export const useLoginForm = () => {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [password, setPassword] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(true);
 
   const handleEmailCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setId(value);
+    setEmail(value);
 
     setIsValidEmail(isValidEmailRegex(value));
   };
@@ -22,10 +22,10 @@ export const useLoginForm = () => {
     setIsValidPassword(value.length >= PASSWORD_LENGTH);
   };
 
-  const isFormValid = !isValidEmail || !isValidPassword || id === '' || password === '';
+  const isFormValid = !isValidEmail || !isValidPassword || email === '' || password === '';
 
   return {
-    id,
+    email,
     password,
     isValidEmail,
     isValidPassword,
