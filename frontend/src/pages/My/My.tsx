@@ -8,7 +8,7 @@ export default function My() {
   const navigate = useNavigate();
   const userInfo = getUserInfo();
   const email = userInfo?.email;
-  const ID = email ? email.split('@')[0] : '';
+  const name = userInfo?.name;
 
   const handleLogout = () => {
     clearUserInfo();
@@ -20,7 +20,7 @@ export default function My() {
       <Header />
       <Title>마이 페이지</Title>
       <Content>
-        <p>{ID}님 안녕하세요!</p>
+        <p>{name}님 안녕하세요!</p>
         <p>이메일 주소는 {email}입니다.</p>
       </Content>
       <LogoutBtn onClick={handleLogout}>로그아웃</LogoutBtn>
