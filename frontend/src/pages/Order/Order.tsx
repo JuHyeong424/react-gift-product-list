@@ -14,9 +14,9 @@ export default function Order() {
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
   const location = useLocation();
-  const state = location.state;
-  const ranking = state?.ranking ?? [];
-  const loading = state?.loading ?? false;
+  // const state = location.state;
+  // const ranking = state?.ranking ?? [];
+  // const loading = state?.loading ?? false;
 
   const [count, setCount] = useState(0);
   const receiverForm = useReceiverForm();
@@ -40,19 +40,11 @@ export default function Order() {
     <Wrapper>
       <Header />
       <FormProvider {...methods}>
-        <>
-          <Message />
-          <Sender />
-          <Receiver setCount={setCount} receiverForm={receiverForm} />
-          {loading ? (
-            <div>로딩중</div>
-          ) : (
-            <>
-              <ItemInfo id={id} ranking={ranking} />
-              <OrderButton id={id} ranking={ranking} count={count} receiverForm={receiverForm} />
-            </>
-          )}
-        </>
+        <Message />
+        <Sender />
+        <Receiver setCount={setCount} receiverForm={receiverForm} />
+        <ItemInfo id={id} />
+        <OrderButton id={id} count={count} receiverForm={receiverForm} />
       </FormProvider>
     </Wrapper>
   );
