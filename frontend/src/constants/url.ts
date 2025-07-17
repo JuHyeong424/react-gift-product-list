@@ -1,3 +1,10 @@
-export const THEME_URL = `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_THEME_URL}`;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const RANKING_URL = `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_RANKING_URL}`;
+const ENDPOINTS = {
+  THEMES: '/themes',
+  RANKING: '/products/ranking',
+}
+
+export const THEME_URL = `${BASE_URL}${ENDPOINTS.THEMES}`;
+
+export const RANKING_URL = `${BASE_URL}${ENDPOINTS.RANKING}`;
