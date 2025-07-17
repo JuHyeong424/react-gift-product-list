@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
-import { ItemTitle, ItemWrapper } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
 import { useEffect } from 'react';
+import { getUserInfo } from '../../../../storage/userInfo.ts';
+import order from '../../../../api/order.ts';
 
 interface Props {
   id: number;
   count: number;
-  receiveForm: {
-    submittedRef: React.MutableRefObject<{ count: number }[] | null>;
+  receiverForm: {
+    submittedRef: React.MutableRefObject<{ name: string; phone: string; count: number }[] | null>;
   };
 }
+
 
 export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
@@ -36,18 +38,48 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
 
   const price = product.price * count;
 
-  const onSubmit = (data) => {
-    if (!submittedRef.current || submittedRef.current.length === 0) return;
+  const onSubmit = async (data) => {
+    const userInfo = getUserInfo();
+    const token = userInfo?.authToken;
 
-    const { textMessage, senderName } = data;
+    if (!token) {
+      toast.error('로그인이 필요합니다.');
+      navigate('/login');
+      return;
+    }
 
-    toast(renderOrderSuccessToast(product.name, count, senderName, textMessage), {
-      type: 'success',
-      autoClose: 3000,
-      style: { width: '400px' },
-    });
+    if (!submittedRef.current || submittedRef.current.length === 0) {
+      toast.error('받는 사람 정보를 입력해주세요.');
+      return;
+    }
 
-    navigate('/');
+    const { textMessage, senderName, messageCardId } = data;
+
+    const orderData = {
+      productId: product.id,
+      message: textMessage,
+      messageCardId: String(messageCardId),
+      ordererName: senderName,
+      receivers: submittedRef.current.map(({ name, phone, count }) => ({
+        name,
+        phoneNumber: phone,
+        quantity: Number(count),
+      })),
+    }
+
+    try {
+      const result = await order(orderData);
+      if (result.data?.success) {
+        toast(renderOrderSuccessToast(product.name, count, senderName, textMessage), {
+          type: 'success',
+          autoClose: 3000,
+          style: { width: '400px' },
+        });
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error(error.message || '주문 중 오류가 발생했습니다.');
+    }
   };
 
   return (

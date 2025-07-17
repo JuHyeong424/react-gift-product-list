@@ -10,6 +10,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
 import { Wrapper } from '@/pages/Order/Order.style.ts';
 import { getUserInfo } from '../../../storage/userInfo.ts';
+import { orderMessage } from '@/data/orderMessage.ts';
 
 export default function Order() {
   const params = useParams<{ id: string }>();
@@ -25,6 +26,7 @@ export default function Order() {
     mode: 'onChange',
     defaultValues: {
       textMessage: '',
+      messageCardId: String(orderMessage[0].id),
       senderName: name,
       receiverName: '',
       receiverPhone: '',
