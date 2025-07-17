@@ -3,13 +3,15 @@ import user from '@/assets/user.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HeaderWrapper, StyledLink, Title, Icon } from '@/components/Header/Header.styles';
 import { PATH } from '@/constants/path';
+import { getUserInfo } from '../../../storage/userInfo.ts';
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLoginClick = () => {
-    if (sessionStorage.getItem('splitedId')) {
+    const userInfo = getUserInfo();
+    if (userInfo) {
       navigate(PATH.MY, { state: { from: location.pathname } });
     } else {
       navigate(PATH.LOGIN, { state: { from: location.pathname } });

@@ -23,12 +23,14 @@ import { useNavigate } from 'react-router-dom';
 import useFetchRanking from '@/hooks/fetch/useFetchRanking.ts';
 import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
 import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
+import { getUserInfo } from '../../../storage/userInfo.ts';
 
 export default function GiftRanking() {
   const navigate = useNavigate();
   const [showCount, setShowCount] = useState<number>(INITIAL_VISIBLE_GIFT_COUNT); // 초기에 6개 보여줌
   const [category, setCategory] = useLocalStorageState<string>('giftRankingCategory', '전체');
   const [sort, setSort] = useLocalStorageState<string>('giftRankingSort', '받고 싶어한');
+  const userInfo = getUserInfo();
   const targetType = targetTypeMap[category];
   const rankType = rankTypeMap[sort];
 
@@ -83,7 +85,7 @@ export default function GiftRanking() {
                 price={item.price.sellingPrice}
                 brand={item.brandInfo.name}
                 onClick={() =>
-                  navigate(sessionStorage.getItem('splitedId') ? `/order/${item.id}` : '/login', {
+                  navigate(userInfo ? `/order/${item.id}` : '/login', {
                     state: { ranking, loading, from: `/order/${item.id}` },
                   })
                 }
