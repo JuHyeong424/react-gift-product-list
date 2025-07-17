@@ -19,7 +19,7 @@ export const useLoginForm = () => {
     const value = e.target.value;
     setPassword(value);
 
-    setIsValidPassword(value.length > PASSWORD_LENGTH);
+    setIsValidPassword(value.length >= PASSWORD_LENGTH);
   };
 
   const isFormValid = !isValidEmail || !isValidPassword || id === '' || password === '';

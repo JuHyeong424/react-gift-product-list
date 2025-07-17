@@ -4,7 +4,6 @@ import {
   ThemeListContainer,
   YellowBox,
   Loading,
-  Error,
 } from '@/components/GiftThema/GiftThema.styles';
 import ThemeList from '@/components/Common/ThemeList/ThemeList';
 import useFetchThemes from '@/hooks/useFetchThemes.ts';
@@ -12,14 +11,16 @@ import useFetchThemes from '@/hooks/useFetchThemes.ts';
 export default function GiftThema() {
   const { themes, loading, error } = useFetchThemes();
 
+  if (error || !Array.isArray(themes) || themes.length === 0) {
+    return <></>;
+  }
+
   return (
     <Section>
       <Title>선물 테마</Title>
 
       {loading ? (
         <Loading>로딩 중...</Loading>
-      ) : error || !Array.isArray(themes) || themes.length === 0 ? (
-        <Error>상품이 없습니다.</Error>
       ) : (
         <ThemeListContainer>
           {themes.map((item) => (
