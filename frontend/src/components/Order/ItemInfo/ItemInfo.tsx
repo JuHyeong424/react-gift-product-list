@@ -1,10 +1,10 @@
-
 import { ItemTitle, ItemWrapper, Loading } from '@/components/Order/ItemInfo/ItemInfo.style.ts';
 import Item from '@/components/Common/OrderProductImage/OrderProductImage.tsx';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { PATH } from '@/constants/path';
 
 export default function ItemInfo({ id }: number) {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function ItemInfo({ id }: number) {
       toast.error(error, {
         autoClose: 3000,
       });
-      navigate('/');
+      navigate(`${PATH.HOME}`);
     }
   }, [error]);
 

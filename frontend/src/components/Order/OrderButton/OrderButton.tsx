@@ -7,6 +7,7 @@ import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { useEffect } from 'react';
 import { getUserInfo } from '../../../../storage/userInfo.ts';
 import order from '../../../../api/order.ts';
+import { PATH } from '@/constants/path';
 
 interface Props {
   id: number;
@@ -15,7 +16,6 @@ interface Props {
     submittedRef: React.MutableRefObject<{ name: string; phone: string; count: number }[] | null>;
   };
 }
-
 
 export default function OrderButton({ id, count, receiverForm }: Props) {
   const { handleSubmit } = useFormContext();
@@ -28,7 +28,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
       toast.error(error, {
         autoClose: 3000,
       });
-      navigate('/');
+      navigate(`${PATH.HOME}`);
     }
   }, [error]);
 
@@ -44,7 +44,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
 
     if (!token) {
       toast.error('로그인이 필요합니다.');
-      navigate('/login');
+      navigate(`${PATH.LOGIN}`);
       return;
     }
 
@@ -75,7 +75,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
           autoClose: 3000,
           style: { width: '400px' },
         });
-        navigate('/');
+        navigate(`${PATH.HOME}`);
       }
     } catch (error) {
       toast.error(error.message || '주문 중 오류가 발생했습니다.');

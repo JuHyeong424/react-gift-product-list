@@ -24,6 +24,7 @@ import useFetchRanking from '@/hooks/fetch/useFetchRanking.ts';
 import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
 import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
 import { getUserInfo } from '../../../storage/userInfo.ts';
+import { PATH } from '@/constants/path.ts';
 
 export default function GiftRanking() {
   const navigate = useNavigate();
@@ -85,8 +86,8 @@ export default function GiftRanking() {
                 price={item.price.sellingPrice}
                 brand={item.brandInfo.name}
                 onClick={() =>
-                  navigate(userInfo ? `/order/${item.id}` : '/login', {
-                    state: { ranking, loading, from: `/order/${item.id}` },
+                  navigate(userInfo ? `${PATH.ORDER}/${item.id}` : `${PATH.LOGIN}`, {
+                    state: { ranking, loading, from: `${PATH.ORDER}/${item.id}` },
                   })
                 }
               />
