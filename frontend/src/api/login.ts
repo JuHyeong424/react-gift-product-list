@@ -17,7 +17,10 @@ export const login = async (params: LoginRequest) => {
     const res = await axios.post<LoginResponse>(LOGIN_URL, params);
     return res.data;
   } catch (error) {
-    const err = error as AxiosError<{ data?: { message?: string } }>;
-    throw new Error(err.response?.data?.data?.message || '로그인 중 오류가 발생했습니다.');
+    if (axios.isAxiosError<{ data?: { message?: string } }> (error)) {
+      throw new Error(error.response?.data?.data?.message);
+    } else {
+      throw new Error('로그인 중 오류가 발생했습니다.');
+    }
   }
 };

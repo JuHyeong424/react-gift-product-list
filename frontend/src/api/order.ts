@@ -31,8 +31,10 @@ export default async function order(data: OrderRequest) {
     });
     return res.data;
   } catch (error) {
-    const err = error as AxiosError<{ message?: string }>;
-    console.error('주문 요청 실패:', err.response?.data);
-    throw new Error(err.response?.data?.data?.message || '주문에 실패했습니다.');
+    if (axios.isAxiosError<{ data?: { message?: string } }> (error)) {
+      throw new Error(error.response?.data?.data?.message);
+    } else {
+      throw new Error('주문에 실패했습니다.');
+    }
   }
 }

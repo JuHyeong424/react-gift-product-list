@@ -79,7 +79,11 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
         navigate(`${PATH.HOME}`);
       }
     } catch (error) {
-      toast.error(error.message || '주문 중 오류가 발생했습니다.');
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error('주문 중 오류가 발생했습니다.');
+      }
     }
   };
 
