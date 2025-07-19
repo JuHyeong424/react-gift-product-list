@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { BASE_URL } from '../../../api/api.ts';
+import { BASE_URL } from '@/api/api.ts';
 
 interface Item {
   id: string | number;
@@ -18,7 +18,7 @@ export default function useFetchProductData(id: number) {
   useEffect(() => {
     if (!id) return;
 
-    const fetchData = async () => {
+    const fetchProductData = async () => {
       try {
         const res = await axios.get<{ data: Item }>(`${BASE_URL}/products/${id}/summary`)
         setProduct(res.data.data);
@@ -31,7 +31,7 @@ export default function useFetchProductData(id: number) {
       }
     };
 
-    fetchData();
+    fetchProductData();
   }, [id]);
 
   return { product, loading, error };

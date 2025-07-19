@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { useEffect } from 'react';
 import { getUserInfo } from '../../../../storage/userInfo.ts';
-import order from '../../../../api/order.ts';
+import order from '@/api/order.ts';
 import { PATH } from '@/constants/path';
 
 interface Props {

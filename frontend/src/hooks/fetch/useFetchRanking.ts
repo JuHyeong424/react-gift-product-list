@@ -1,4 +1,4 @@
-import { RANKING_URL } from '../../../api/api.ts';
+import { RANKING_URL } from '@/api/api.ts';
 import useFetchData from '@/hooks/fetch/useFetchData.ts';
 import type { Product } from '@/types/productData';
 

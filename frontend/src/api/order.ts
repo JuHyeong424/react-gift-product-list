@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import { ORDER_URL } from './api';
-import { getUserInfo } from '../storage/userInfo';
+import { ORDER_URL } from './api.ts';
+import { getUserInfo } from '../../storage/userInfo.ts';
 
 interface OrderRequest {
   productId: string | number;
