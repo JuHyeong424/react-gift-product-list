@@ -3,8 +3,8 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
-import prettier from 'eslint-config-prettier'; // 추가
-import eslintPluginPrettier from 'eslint-plugin-prettier'; // 추가
+import prettier from 'eslint-config-prettier';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   {
@@ -27,7 +27,13 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      'prettier/prettier': 'warn', // Prettier 규칙을 ESLint로 확인
+      'prettier/prettier': [
+        'warn',
+        {
+          endOfLine: 'lf',
+        },
+      ],
+      'linebreak-style': ['error', 'unix'],
     },
     extends: [
       js.configs.recommended,
