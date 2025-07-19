@@ -15,7 +15,9 @@ export interface OrderRequest {
 }
 
 interface OrderResponse {
-  success: boolean;
+  data: {
+    success: boolean;
+  }
 }
 
 export default async function order(data: OrderRequest) {
