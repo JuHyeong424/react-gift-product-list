@@ -20,7 +20,7 @@ export default function ItemInfo({ id }: number) {
   }, [error]);
 
   if (!product) {
-    return <div>상품 정보가 없습니다.</div>
+    return <div>상품 정보가 없습니다.</div>;
   }
 
   return (
@@ -37,7 +37,6 @@ export default function ItemInfo({ id }: number) {
           price={product.price}
         />
       )}
-
     </ItemWrapper>
   );
 }

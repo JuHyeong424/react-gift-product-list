@@ -14,7 +14,8 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
         setData(res.data.data);
       } catch (e) {
         const error = e as AxiosError<{ message: string }>;
-        const errorMessage =  error.response?.data?.data.message || '상품 정보를 불러오는 중 오류가 발생했습니다.';
+        const errorMessage =
+          error.response?.data?.data.message || '상품 정보를 불러오는 중 오류가 발생했습니다.';
         setError(errorMessage);
       } finally {
         setLoading(false);

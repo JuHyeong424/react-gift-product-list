@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { ORDER_URL } from './api.ts';
 import { getUserInfo } from '@/storage/userInfo.ts';
 
@@ -17,7 +17,7 @@ export interface OrderRequest {
 interface OrderResponse {
   data: {
     success: boolean;
-  }
+  };
 }
 
 export default async function order(data: OrderRequest) {
@@ -29,11 +29,11 @@ export default async function order(data: OrderRequest) {
       headers: {
         Authorization: token || '',
         'Content-Type': 'application/json',
-      }
+      },
     });
     return res.data;
   } catch (error) {
-    if (axios.isAxiosError<{ data?: { message?: string } }> (error)) {
+    if (axios.isAxiosError<{ data?: { message?: string } }>(error)) {
       throw new Error(error.response?.data?.data?.message);
     } else {
       throw new Error('주문에 실패했습니다.');

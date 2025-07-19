@@ -34,7 +34,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
   }, [error]);
 
   if (!product) {
-    return <div>상품 정보가 없습니다.</div>
+    return <div>상품 정보가 없습니다.</div>;
   }
 
   const price = product.price * count;
@@ -66,7 +66,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
         phoneNumber: phone,
         quantity: Number(count),
       })),
-    }
+    };
 
     try {
       const result = await order(orderData);
@@ -95,5 +95,5 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
         <PriceButton onClick={handleSubmit(onSubmit)}>{price}원 주문하기</PriceButton>
       )}
     </>
-  )
+  );
 }
