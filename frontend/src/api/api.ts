@@ -14,3 +14,5 @@ export const RANKING_URL = `${BASE_URL}${ENDPOINTS.RANKING}`;
 export const LOGIN_URL = `${BASE_URL}${ENDPOINTS.LOGIN}`;
 
 export const ORDER_URL = `${BASE_URL}${ENDPOINTS.ORDER}`;
+
+export const PRODUCT_SUMMARY_URL = (id: number) =>  `${BASE_URL}/products/${id}/summary`;
