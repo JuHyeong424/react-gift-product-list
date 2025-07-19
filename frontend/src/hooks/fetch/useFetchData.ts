@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import * as qs from 'qs';
 
 export default function useFetchData<T>(url: string, params?: Record<string, any>) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +13,9 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
         const res = await axios.get<{ data: T }>(url, { params });
         setData(res.data.data);
       } catch (e) {
-        console.log('api 에러', e);
-        setError(true);
+        const error = e as AxiosError<{ message: string }>;
+        const errorMessage =  error.response?.data?.data.message || '상품 정보를 불러오는 중 오류가 발생했습니다.';
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
