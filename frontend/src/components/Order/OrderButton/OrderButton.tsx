@@ -7,6 +7,7 @@ import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { useEffect } from 'react';
 import { getUserInfo } from '../../../../storage/userInfo.ts';
 import order from '@/api/order.ts';
+import type { OrderRequest } from '@/api/order';
 import { PATH } from '@/constants/path';
 
 interface Props {
@@ -55,7 +56,7 @@ export default function OrderButton({ id, count, receiverForm }: Props) {
 
     const { textMessage, senderName, messageCardId } = data;
 
-    const orderData = {
+    const orderData: OrderRequest = {
       productId: product.id,
       message: textMessage,
       messageCardId: String(messageCardId),

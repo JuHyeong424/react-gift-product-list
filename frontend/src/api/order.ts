@@ -2,11 +2,11 @@ import axios, { AxiosError } from 'axios';
 import { ORDER_URL } from './api.ts';
 import { getUserInfo } from '../../storage/userInfo.ts';
 
-interface OrderRequest {
+export interface OrderRequest {
   productId: string | number;
   message: string;
   messageCardId: string;
-  orderName: string;
+  ordererName: string;
   receivers: {
     name: string;
     phoneNumber: string;
