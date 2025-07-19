@@ -5,7 +5,7 @@ import { renderOrderSuccessToast } from '@/utils/toastContents.tsx';
 import { toast } from 'react-toastify';
 import useFetchProductData from '@/hooks/fetch/useFetchProductData.ts';
 import { useEffect } from 'react';
-import { getUserInfo } from '../../../../storage/userInfo.ts';
+import { getUserInfo } from '@/storage/userInfo.ts';
 import order from '@/api/order.ts';
 import type { OrderRequest } from '@/api/order';
 import { PATH } from '@/constants/path';

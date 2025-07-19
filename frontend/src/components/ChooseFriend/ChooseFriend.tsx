@@ -1,5 +1,5 @@
 import { Message, PlusButton, Wrapper } from '@/components/ChooseFriend/ChooseFriend.styes';
-import { getUserInfo } from '../../../storage/userInfo.ts';
+import { getUserInfo } from '@/storage/userInfo.ts';
 
 export default function ChooseFriend() {
   const userInfo = getUserInfo();

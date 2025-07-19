@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
 import useFetchRanking from '@/hooks/fetch/useFetchRanking.ts';
 import FilterButton from '@/components/Common/FilterButton/FilterButton.tsx';
 import SortSpan from '@/components/Common/SortOption/SortOption.tsx';
-import { getUserInfo } from '../../../storage/userInfo.ts';
+import { getUserInfo } from '@/storage/userInfo.ts';
 import { PATH } from '@/constants/path.ts';
 
 export default function GiftRanking() {

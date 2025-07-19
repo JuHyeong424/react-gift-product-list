@@ -1,9 +1,8 @@
-
 import Header from '@/components/Header/Header.tsx';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path.ts';
 import { Content, LogoutBtn, Title } from '@/pages/My/My.style.ts';
-import { clearUserInfo, getUserInfo } from '../../../storage/userInfo.ts';
+import { clearUserInfo, getUserInfo } from '@/storage/userInfo.ts';
 
 export default function My() {
   const navigate = useNavigate();

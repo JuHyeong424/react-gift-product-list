@@ -3,7 +3,7 @@ import user from '@/assets/user.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HeaderWrapper, StyledLink, Title, Icon } from '@/components/Header/Header.styles';
 import { PATH } from '@/constants/path';
-import { getUserInfo } from '../../../storage/userInfo.ts';
+import { getUserInfo } from '@/storage/userInfo.ts';
 
 export default function Header() {
   const navigate = useNavigate();

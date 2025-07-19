@@ -1,7 +1,6 @@
 import { Title, SenderWrapper } from '@/components/Order/Sender/Sender.style.ts';
 import SenderForm from '@/components/Order/Sender/SenderForm.tsx';
 import { Controller, useFormContext } from 'react-hook-form';
-import { getUserInfo } from '../../../../storage/userInfo.ts';
 
 export default function Sender() {
   const {

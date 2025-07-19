@@ -1,7 +1,7 @@
 import ItemInfo from '@/components/Order/ItemInfo/ItemInfo.tsx';
 import Header from '@/components/Header/Header.tsx';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Receiver from '@/components/Order/Receiver/Receiver.tsx';
 import Message from '@/components/Order/Message/Message.tsx';
 import OrderButton from '@/components/Order/OrderButton/OrderButton.tsx';
@@ -9,7 +9,7 @@ import Sender from '@/components/Order/Sender/Sender.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import useReceiverForm from '@/hooks/order/receiver/useReceiverForm.ts';
 import { Wrapper } from '@/pages/Order/Order.style.ts';
-import { getUserInfo } from '../../../storage/userInfo.ts';
+import { getUserInfo } from '@/storage/userInfo.ts';
 import { orderMessage } from '@/data/orderMessage.ts';
 
 export default function Order() {

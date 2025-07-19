@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '@/components/Header/Header';
 import {
@@ -13,7 +12,7 @@ import { KAKAO_LOGO_SVG } from '@/assets/svg/kakaoLogo';
 import { useLoginForm } from '@/hooks/useLoginForm.ts';
 import { PASSWORD_LENGTH } from '@/constants/password.ts';
 import { login } from '@/api/login.ts';
-import { saveUserInfo } from '../../../storage/userInfo.ts';
+import { saveUserInfo } from '@/storage/userInfo.ts';
 import { toast } from 'react-toastify';
 
 const Login = () => {
