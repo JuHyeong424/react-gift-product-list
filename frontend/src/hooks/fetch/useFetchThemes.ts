@@ -1,5 +1,5 @@
-import { THEME_URL } from '@/constants/url.ts';
-import useFetchData from '@/hooks/useFetchData.ts';
+import { THEME_URL } from '@/api/api.ts';
+import useFetchData from '@/hooks/fetch/useFetchData.ts';
 
 interface Theme {
   themeId: number;

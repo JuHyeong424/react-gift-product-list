@@ -1,7 +1,7 @@
-import { RANKING_URL } from '@/constants/url.ts';
-import useFetchData from '@/hooks/useFetchData.ts';
+import { RANKING_URL } from '@/api/api.ts';
+import useFetchData from '@/hooks/fetch/useFetchData.ts';
 
-interface Ranking {
+interface Product {
   id: string | number;
   name: string;
   price: {
@@ -22,7 +22,7 @@ export default function useFetchRanking(targetType: string, rankType: string) {
     data: ranking,
     loading,
     error,
-  } = useFetchData<Ranking>(RANKING_URL, {
+  } = useFetchData<Product>(RANKING_URL, {
     targetType,
     rankType,
   });

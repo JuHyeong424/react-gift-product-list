@@ -11,13 +11,16 @@ import {
 import { KAKAO_LOGO_SVG } from '@/assets/svg/kakaoLogo';
 import { useLoginForm } from '@/hooks/useLoginForm.ts';
 import { PASSWORD_LENGTH } from '@/constants/password.ts';
+import { login } from '@/api/login.ts';
+import { saveUserInfo } from '@/storage/userInfo.ts';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const {
-    id,
+    email,
     password,
     isValidEmail,
     isValidPassword,
@@ -26,20 +29,20 @@ const Login = () => {
     isFormValid,
   } = useLoginForm();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (isFormValid) {
-      return;
+    if (isFormValid) return;
+
+    try {
+      const res = await login({ email, password });
+      saveUserInfo(res.data);
+
+      const fallback = location.state?.from || '/';
+      navigate(fallback);
+    } catch (error) {
+      toast.error(error.message);
     }
-
-    const splitedId = id.split('@')[0];
-
-    sessionStorage.setItem('splitedId', splitedId);
-    sessionStorage.setItem('email', id);
-
-    const fallback = location.state?.from || '/';
-    navigate(fallback);
   };
 
   return (
@@ -54,11 +57,11 @@ const Login = () => {
               <StyledInput
                 type="email"
                 placeholder="이메일"
-                value={id}
+                value={email}
                 onChange={handleEmailCheck}
               />
               {!isValidEmail &&
-                (id ? (
+                (email ? (
                   <Alert>올바른 이메일 형식이 아닙니다.</Alert>
                 ) : (
                   <Alert>아이디를 입력해주세요.</Alert>
