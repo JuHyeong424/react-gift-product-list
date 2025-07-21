@@ -4,15 +4,21 @@ import {
   ThemeListContainer,
   YellowBox,
   Loading,
-} from '@/components/GiftThema/GiftThema.styles';
-import ThemeList from '@/components/Common/ThemeList/ThemeList';
+} from '@/components/GiftThema/Thema/GiftThema.styles.ts';
+import ThemeList from '@/components/GiftThema/Thema/ThemeList.tsx';
 import useFetchThemes from '@/hooks/fetch/useFetchThemes.ts';
+import { useNavigate } from 'react-router-dom';
 
 export default function GiftThema() {
+  const navigate = useNavigate();
   const { themes, loading, error } = useFetchThemes();
 
   if (error || !Array.isArray(themes) || themes.length === 0) {
     return <></>;
+  }
+
+  const onThemesClickHandle = (item) => {
+    navigate(`/themes/${item.themeId}`);
   }
 
   return (
@@ -24,7 +30,12 @@ export default function GiftThema() {
       ) : (
         <ThemeListContainer>
           {themes.map((item) => (
-            <ThemeList key={item.name} image={item.image} name={item.name} />
+            <ThemeList
+              key={item.themeId}
+              image={item.image}
+              name={item.name}
+              onClick={() => onThemesClickHandle(item)}
+            />
           ))}
         </ThemeListContainer>
       )}
