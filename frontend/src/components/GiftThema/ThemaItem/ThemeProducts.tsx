@@ -1,13 +1,37 @@
 import useFetchThemesProduct from '@/hooks/fetch/useFetchThemesProduct.ts';
+import CardList from '@/components/Common/RankingCard/CardList.tsx';
+import {
+  ProductsError,
+  ProductsList,
+  ProductsLoading,
+  ThemeProductsWrapper,
+} from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
 
-export default function ThemeProducts(themeId: number) {
+export default function ThemeProducts({ themeId }: number) {
   const { themeProducts, loading, error } = useFetchThemesProduct(themeId);
 
-  if (loading) return <p>로딩 중...</p>;
-  if (error) return <p>에러가 발생했습니다</p>;
-  if (!themeProducts) return <p>테마 정보를 찾을 수 없습니다</p>;
-
   return (
+    <ThemeProductsWrapper>
+      {loading ? (
+        <ProductsLoading>로딩 중...</ProductsLoading>
+      ) : error || !themeProducts ? (
+        <ProductsError>상품이 없습니다.</ProductsError>
+      ) : (
+        <>
+          <ProductsList>
+            {themeProducts?.list.map((item) => (
+              <CardList
+                key={item.id}
+                image={item.imageURL}
+                name={item.name}
+                price={item.price.sellingPrice}
+                brand={item.brandInfo.name}
+              />
+            ))}
+          </ProductsList>
+        </>
+      )}
+    </ThemeProductsWrapper>
 
   )
 }
