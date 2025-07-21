@@ -25,7 +25,7 @@ export default function Message() {
       <ImageWrapper>
         {orderMessage.map((item) => (
           <MessageImage
-            key={selectedId}
+            key={item.id}
             src={item.thumbUrl}
             alt={item.defaultTextMessage}
             onClick={() => {
