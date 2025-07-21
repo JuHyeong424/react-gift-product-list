@@ -12,7 +12,12 @@ import { PATH } from '@/constants/path';
 
 export default function ThemeProducts({ themeId }: number) {
   const navigate = useNavigate();
-  const { themeProducts, loading, error, statusCode } = useFetchThemesProduct(themeId);
+  const { list: themeProducts,
+    loading,
+    error,
+    statusCode,
+    observerRef
+  } = useFetchThemesProduct(themeId);
 
   useEffect(() => {
     if (statusCode === 404) {
@@ -20,21 +25,19 @@ export default function ThemeProducts({ themeId }: number) {
     }
   }, [statusCode, navigate]);
 
-  console.log({ error, themeProducts, list: themeProducts?.list });
-
   return (
     <ThemeProductsWrapper
       error={error}
-      product={themeProducts?.list.length}
+      product={themeProducts.length}
     >
-      {loading ? (
+      {loading && themeProducts.length === 0? (
         <ProductsLoading>로딩 중...</ProductsLoading>
-      ) : error || themeProducts?.list.length === 0 ? (
+      ) : error || themeProducts.length === 0 ? (
         <ProductsError>상품이 없습니다.</ProductsError>
       ) : (
         <>
           <ProductsList>
-            {themeProducts?.list.map((item) => (
+            {themeProducts.map((item) => (
               <CardList
                 key={item.id}
                 image={item.imageURL}
@@ -44,6 +47,8 @@ export default function ThemeProducts({ themeId }: number) {
               />
             ))}
           </ProductsList>
+
+          <div ref={observerRef} style={{ height: '1px' }} />
         </>
       )}
     </ThemeProductsWrapper>
