@@ -20,11 +20,16 @@ export default function ThemeProducts({ themeId }: number) {
     }
   }, [statusCode, navigate]);
 
+  console.log({ error, themeProducts, list: themeProducts?.list });
+
   return (
-    <ThemeProductsWrapper>
+    <ThemeProductsWrapper
+      error={error}
+      product={themeProducts?.list.length}
+    >
       {loading ? (
         <ProductsLoading>로딩 중...</ProductsLoading>
-      ) : error || !themeProducts ? (
+      ) : error || themeProducts?.list.length === 0 ? (
         <ProductsError>상품이 없습니다.</ProductsError>
       ) : (
         <>
