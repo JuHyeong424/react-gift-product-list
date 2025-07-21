@@ -21,7 +21,11 @@ export default function ItemInfo({ id }: Props) {
       });
       navigate(`${PATH.HOME}`);
     }
-  }, [error]);
+  }, [error, navigate]);
+
+  if (error) {
+    return null;
+  }
 
   if (!product) {
     return <div>상품 정보가 없습니다.</div>;
