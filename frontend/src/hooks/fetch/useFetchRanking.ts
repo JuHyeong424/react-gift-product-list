@@ -1,3 +1,4 @@
+
 import { RANKING_URL } from '@/api/api.ts';
 import useFetchData from '@/hooks/fetch/useFetchData.ts';
 
