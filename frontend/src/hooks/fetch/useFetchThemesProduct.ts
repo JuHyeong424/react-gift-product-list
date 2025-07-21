@@ -10,11 +10,12 @@ interface ThemesProduct {
 
 export default function useFetchThemesProduct(themesId: number) {
   const url = THEMES_PRODUCTS(themesId);
-  const { data: themeProducts, loading, error } = useFetchData<ThemesProduct>(url);
+  const { data: themeProducts, loading, error, statusCode } = useFetchData<ThemesProduct>(url);
 
   return {
     themeProducts,
     loading,
     error,
+    statusCode,
   }
 }

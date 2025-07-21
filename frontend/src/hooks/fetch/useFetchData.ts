@@ -6,6 +6,7 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [statusCode, setStatusCode] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +15,7 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
         setData(res.data.data);
       } catch (e) {
         const error = e as AxiosError<{ message: string }>;
+        setStatusCode(error.response?.status || null);
         const errorMessage =
           error.response?.data?.data.message || '상품 정보를 불러오는 중 오류가 발생했습니다.';
         setError(errorMessage);
@@ -29,5 +31,6 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
     data,
     loading,
     error,
+    statusCode,
   };
 }

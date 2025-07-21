@@ -6,9 +6,19 @@ import {
   ProductsLoading,
   ThemeProductsWrapper,
 } from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '@/constants/path';
 
 export default function ThemeProducts({ themeId }: number) {
-  const { themeProducts, loading, error } = useFetchThemesProduct(themeId);
+  const navigate = useNavigate();
+  const { themeProducts, loading, error, statusCode } = useFetchThemesProduct(themeId);
+
+  useEffect(() => {
+    if (statusCode === 404) {
+      navigate(`${PATH.HOME}`);
+    }
+  }, [statusCode, navigate]);
 
   return (
     <ThemeProductsWrapper>
