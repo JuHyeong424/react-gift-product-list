@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import * as qs from 'qs';
+import { DEFAULT_ERROR_MESSAGE } from '@/constants/errorMessage.ts';
 
 export default function useFetchData<T>(url: string, params?: Record<string, any>) {
   const [data, setData] = useState<T | null>(null);
@@ -17,7 +18,7 @@ export default function useFetchData<T>(url: string, params?: Record<string, any
         const error = e as AxiosError<{ message: string }>;
         setStatusCode(error.response?.status || null);
         const errorMessage =
-          error.response?.data?.data.message || '상품 정보를 불러오는 중 오류가 발생했습니다.';
+          error.response?.data?.data.message || DEFAULT_ERROR_MESSAGE;
         setError(errorMessage);
       } finally {
         setLoading(false);
