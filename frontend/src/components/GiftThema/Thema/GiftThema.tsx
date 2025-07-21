@@ -14,7 +14,7 @@ export default function GiftThema() {
   const { themes, loading, error } = useFetchThemes();
 
   if (error || !Array.isArray(themes) || themes.length === 0) {
-    return <></>;
+    return null;
   }
 
   const onThemesClickHandle = (item) => {
