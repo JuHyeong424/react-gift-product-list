@@ -10,30 +10,35 @@ export default function useFetchThemesProduct(themesId: number) {
     error,
     hasMore,
     fetchNextPage: fetchData,
-    statusCode
+    statusCode,
   } = useInfiniteFetchThemesProduct(url);
   const observerRef = useRef<HTMLDivElement>(null);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-    const target = entries[0];
-    if (target.isIntersecting && hasMore && !loading) {
-      fetchData();
-    }
-  }, [fetchData, hasMore, loading]
+      const target = entries[0];
+      if (target.isIntersecting && hasMore && !loading) {
+        fetchData();
+      }
+    },
+    [fetchData, hasMore, loading],
   );
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {threshold: 0.1});
+    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 });
 
     const current = observerRef.current;
     if (current) observer.observe(current);
     return () => {
       if (current) observer.unobserve(current);
-    }
+    };
   }, [handleObserver]);
 
   return {
-    list, loading, error, statusCode, observerRef,
-  }
+    list,
+    loading,
+    error,
+    statusCode,
+    observerRef,
+  };
 }

@@ -19,7 +19,7 @@ export default function GiftThema() {
 
   const onThemesClickHandle = (item) => {
     navigate(`/themes/${item.themeId}`);
-  }
+  };
 
   return (
     <Section>

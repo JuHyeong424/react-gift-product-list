@@ -6,7 +6,11 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 
-export default function ItemInfo({ id }: number) {
+interface Props {
+  id: number;
+}
+
+export default function ItemInfo({ id }: Props) {
   const navigate = useNavigate();
   const { product, loading, error } = useFetchProductData(id);
 

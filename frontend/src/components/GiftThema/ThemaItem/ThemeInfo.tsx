@@ -1,10 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetchThemesInfo from '@/hooks/fetch/useFetchThemesInfo.ts';
 import Header from '@/components/Header/Header.tsx';
-import { ThemeInfoHeader, ThemeInfoWrapper } from '@/components/GiftThema/ThemaItem/ThemeInfo.styles.ts';
+import {
+  ThemeInfoHeader,
+  ThemeInfoWrapper,
+} from '@/components/GiftThema/ThemaItem/ThemeInfo.styles.ts';
 import ThemeProducts from '@/components/GiftThema/ThemaItem/ThemeProducts.tsx';
 import { useEffect } from 'react';
-import { ProductsError, ProductsLoading } from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
+import {
+  ProductsError,
+  ProductsLoading,
+} from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
 import { PATH } from '@/constants/path.ts';
 
 export default function ThemeInfo() {
@@ -35,9 +41,7 @@ export default function ThemeInfo() {
         </ThemeInfoHeader>
       )}
 
-      <ThemeProducts
-          themeId = {themeId}
-      />
+      <ThemeProducts themeId={themeId} />
     </ThemeInfoWrapper>
-  )
+  );
 }

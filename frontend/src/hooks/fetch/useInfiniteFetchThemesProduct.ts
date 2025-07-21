@@ -28,10 +28,10 @@ export default function useInfiniteFetchThemesProduct(url: string) {
       const res = await axios.get<{ data: ThemesProduct }>(`${url}?cursor=${cursor}&limit=10`);
       const { list: newItems, cursor: nextCursor, hasMoreList } = res.data.data;
 
-      setList(prev => [...prev, ...newItems]);
+      setList((prev) => [...prev, ...newItems]);
       setCursor(nextCursor);
       setHasMore(hasMoreList);
-    } catch (e) {
+    } catch (error) {
       setStatusCode(error.response?.status || null);
       setError(true);
     } finally {
@@ -45,6 +45,11 @@ export default function useInfiniteFetchThemesProduct(url: string) {
   }, []);
 
   return {
-    list, loading, error, hasMore, fetchNextPage: fetchData, statusCode
+    list,
+    loading,
+    error,
+    hasMore,
+    fetchNextPage: fetchData,
+    statusCode,
   };
 }

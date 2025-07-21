@@ -12,11 +12,12 @@ import { PATH } from '@/constants/path';
 
 export default function ThemeProducts({ themeId }: number) {
   const navigate = useNavigate();
-  const { list: themeProducts,
+  const {
+    list: themeProducts,
     loading,
     error,
     statusCode,
-    observerRef
+    observerRef,
   } = useFetchThemesProduct(themeId);
 
   useEffect(() => {
@@ -26,11 +27,8 @@ export default function ThemeProducts({ themeId }: number) {
   }, [statusCode, navigate]);
 
   return (
-    <ThemeProductsWrapper
-      error={error}
-      product={themeProducts.length}
-    >
-      {loading && themeProducts.length === 0? (
+    <ThemeProductsWrapper error={error} product={themeProducts.length}>
+      {loading && themeProducts.length === 0 ? (
         <ProductsLoading>로딩 중...</ProductsLoading>
       ) : error || themeProducts.length === 0 ? (
         <ProductsError>상품이 없습니다.</ProductsError>
@@ -52,6 +50,5 @@ export default function ThemeProducts({ themeId }: number) {
         </>
       )}
     </ThemeProductsWrapper>
-
-  )
+  );
 }
