@@ -20,7 +20,7 @@ export default function ThemeItems() {
   }, [statusCode, navigate]);
 
   return (
-    <div>
+    <>
       <Header />
       {loading ? (
         <ProductsLoading>로딩 중...</ProductsLoading>
@@ -30,6 +30,6 @@ export default function ThemeItems() {
           <ThemeProducts themeId={themeId} />
         </>
       )}
-    </div>
+    </>
   )
 }
