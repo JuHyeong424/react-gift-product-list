@@ -6,7 +6,7 @@ import {
   ProductImage,
   ProductName,
   RankBadge,
-} from '@/components/Common/RankingCard/CardList.styles.ts';
+} from '@/components/Common/CardItem/CardList.styles.ts';
 
 interface Props {
   rank?: number;

@@ -1,5 +1,5 @@
 import useFetchThemesProduct from '@/hooks/fetch/useFetchThemesProduct.ts';
-import CardList from '@/components/Common/RankingCard/CardList.tsx';
+import CardList from '@/components/Common/CardItem/CardList.tsx';
 import {
   ProductsError,
   ProductsList,

@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import My from '@/pages/My/My.tsx';
 import Order from '@/pages/Order/Order.tsx';
-import ThemeInfo from '@/components/GiftThema/ThemaItem/ThemeInfo.tsx';
+import ThemeItems from '@/pages/ThemeItem/ThemeItems.tsx';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/my" element={<My />} />
             <Route path="/order/:id" element={<Order />} />
-            <Route path="/themes/:id" element={<ThemeInfo />} />
+            <Route path="/themes/:id" element={<ThemeItems />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

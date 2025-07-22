@@ -17,7 +17,7 @@ import {
   targetTypeMap,
   TOTAL_GIFT_COUNT,
 } from '@/constants/RankingConstants';
-import CardList from '@/components/Common/RankingCard/CardList.tsx';
+import CardList from '@/components/Common/CardItem/CardList.tsx';
 import useLocalStorageState from '@/hooks/useLocalStorageState.ts';
 import { useNavigate } from 'react-router-dom';
 import useFetchRanking from '@/hooks/fetch/useFetchRanking.ts';

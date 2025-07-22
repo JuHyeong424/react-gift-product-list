@@ -5,7 +5,7 @@ import {
   YellowBox,
   Loading,
 } from '@/components/GiftThema/Thema/GiftThema.styles.ts';
-import ThemeList from '@/components/GiftThema/Thema/ThemeList.tsx';
+import ThemeItem from '@/components/GiftThema/Thema/ThemeItem.tsx';
 import useFetchThemes from '@/hooks/fetch/useFetchThemes.ts';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ export default function GiftThema() {
       ) : (
         <ThemeListContainer>
           {themes.map((item) => (
-            <ThemeList
+            <ThemeItem
               key={item.themeId}
               image={item.image}
               name={item.name}
