@@ -9,6 +9,7 @@ import {
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants/path';
+import useInfiniteScrollObserver from '@/hooks/useInfiniteScrollObserver.ts';
 
 export default function ThemeProducts({ themeId }: number) {
   const navigate = useNavigate();
@@ -16,9 +17,16 @@ export default function ThemeProducts({ themeId }: number) {
     list: themeProducts,
     loading,
     error,
+    hasMore,
+    fetchNextPage,
     statusCode,
-    observerRef,
   } = useFetchThemesProduct(themeId);
+
+  const observerRef = useInfiniteScrollObserver({
+    fetchNextPage,
+    hasMore,
+    loading,
+  });
 
   useEffect(() => {
     if (statusCode === 404) {
