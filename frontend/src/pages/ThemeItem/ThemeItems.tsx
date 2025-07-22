@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { PATH } from '@/constants/path.ts';
 import ThemeInfo from '@/components/GiftThema/ThemaItem/ThemeInfo.tsx';
 import ThemeProducts from '@/components/GiftThema/ThemaItem/ThemeProducts.tsx';
+import { ProductsLoading } from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
 
 export default function ThemeItems() {
   const navigate = useNavigate();
@@ -21,8 +22,14 @@ export default function ThemeItems() {
   return (
     <div>
       <Header />
-      <ThemeInfo loading={loading} error={error} themeInfo={themeInfo} />
-      <ThemeProducts themeId={themeId} />
+      {loading ? (
+        <ProductsLoading>로딩 중...</ProductsLoading>
+      ) : (
+        <>
+          <ThemeInfo loading={loading} error={error} themeInfo={themeInfo} />
+          <ThemeProducts themeId={themeId} />
+        </>
+      )}
     </div>
   )
 }

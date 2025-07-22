@@ -28,7 +28,7 @@ export default function ThemeProducts({ themeId }: number) {
 
   return (
     <ThemeProductsWrapper error={error} product={themeProducts.length}>
-      {loading && themeProducts.length === 0 ? (
+      {loading || themeProducts.length === 0 ? (
         <ProductsLoading>로딩 중...</ProductsLoading>
       ) : error || themeProducts.length === 0 ? (
         <ProductsError>상품이 없습니다.</ProductsError>

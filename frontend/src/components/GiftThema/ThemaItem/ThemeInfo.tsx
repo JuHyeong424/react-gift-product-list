@@ -9,12 +9,9 @@ import {
 
 export default function ThemeInfo({ loading, error, themeInfo }) {
 
-
   return (
     <ThemeInfoWrapper>
-      {loading ? (
-        <ProductsLoading>로딩 중...</ProductsLoading>
-      ) : error || !themeInfo ? (
+      {error || !themeInfo ? (
         <ProductsError>테마 정보를 찾을 수 없습니다.</ProductsError>
       ) : (
         <ThemeInfoHeader background={themeInfo.backgroundColor}>
