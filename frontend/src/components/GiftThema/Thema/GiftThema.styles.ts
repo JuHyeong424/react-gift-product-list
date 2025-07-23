@@ -18,9 +18,7 @@ export const ThemeListContainer = styled.div`
   gap: ${({ theme }) => theme.spacing.spacing10};
   width: max-content;
   margin: 0 auto;
-
-  
-
+    
   @media (max-width: 680px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;

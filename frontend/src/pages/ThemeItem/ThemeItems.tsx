@@ -26,7 +26,7 @@ export default function ThemeItems() {
         <ProductsLoading>로딩 중...</ProductsLoading>
       ) : (
         <>
-          <ThemeInfo loading={loading} error={error} themeInfo={themeInfo} />
+          <ThemeInfo error={error} themeInfo={themeInfo} />
           <ThemeProducts themeId={themeId} />
         </>
       )}

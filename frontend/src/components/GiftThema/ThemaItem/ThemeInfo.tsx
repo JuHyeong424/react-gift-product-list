@@ -7,7 +7,7 @@ import {
   ProductsLoading,
 } from '@/components/GiftThema/ThemaItem/ThemeProducts.styles.ts';
 
-export default function ThemeInfo({ loading, error, themeInfo }) {
+export default function ThemeInfo({ error, themeInfo }) {
 
   return (
     <ThemeInfoWrapper>
