@@ -21,7 +21,7 @@ npm install -D vite
 #
 
 ## backend
-Next.ts
+Nest
 
 ## frontend
 Vite+ts
